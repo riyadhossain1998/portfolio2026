@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riyad Hossain — UX Designer & Marketing Strategist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <a href="/" class="nav-logo" data-content="nav.logo">RH</a>
+    <div class="nav-links" id="nav-links"></div>
+    <button class="nav-menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-links" id="mobile-menu-links"></div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero" id="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow" data-content="hero.eyebrow"></p>
+      <h1 class="hero-title" id="hero-title"></h1>
+      <p class="hero-sub" data-content="hero.subtitle"></p>
+      <div class="hero-cta" id="hero-cta"></div>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- Marquee -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track" id="marquee-track"></div>
+  </div>
+
+  <!-- Work -->
+  <section id="work" class="work">
+    <div class="section-header reveal">
+      <span class="section-label" data-content="work.sectionLabel"></span>
+      <h2 class="section-title" data-content="work.sectionTitle"></h2>
+    </div>
+    <div class="project-list" id="project-list"></div>
+  </section>
+
+  <!-- About Teaser -->
+  <section class="about-teaser">
+    <div class="about-teaser-inner reveal">
+      <div class="about-teaser-avatar">
+        <img src="avatar.svg" alt="Riyad Hossain">
+      </div>
+      <div class="about-teaser-content">
+        <span class="section-label" data-content="about.sectionLabel"></span>
+        <h2 class="section-title" data-content="about.sectionTitle"></h2>
+        <p data-content="about.bio"></p>
+        <a class="btn btn-primary" id="about-cta" style="margin-top: 32px;"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="contact-inner">
+      <div class="contact-header reveal">
+        <span class="section-label" data-content="contact.sectionLabel"></span>
+        <h2 class="section-title" data-content="contact.sectionTitle"></h2>
+        <p class="contact-sub" data-content="contact.subtitle"></p>
+      </div>
+      <form id="contact-form" class="contact-form reveal" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project..." rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
+          <span>Send Message</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p id="form-status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-logo" data-content="footer.name"></span>
+      <nav class="footer-links" id="footer-links"></nav>
+      <p class="footer-copy" id="footer-copy"></p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

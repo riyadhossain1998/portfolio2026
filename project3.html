@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Humming Salad Bar — Riyad Hossain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <nav class="nav scrolled">
+    <a href="/" class="nav-logo">RH</a>
+    <div class="nav-links">
+      <a href="/#work" class="active">Work</a>
+      <a href="about.html">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <p class="hero-eyebrow reveal">Case Study — 03</p>
+      <h1 class="page-hero-title reveal reveal-delay-1">Humming Salad Bar</h1>
+      <p class="page-hero-subtitle reveal reveal-delay-2">A playful, wordless interaction where your hum becomes your recipe — exploring sound as a non-traditional input modality in web design.</p>
+      <div class="project-hero-meta reveal reveal-delay-3">
+        <div class="project-meta-item">
+          <span class="project-meta-label">Role</span>
+          <span class="project-meta-value">Interaction Design, Full-Stack</span>
+        </div>
+        <div class="project-meta-item">
+          <span class="project-meta-label">Timeline</span>
+          <span class="project-meta-value">Feb – Mar 2021</span>
+        </div>
+        <div class="project-meta-item">
+          <span class="project-meta-label">Context</span>
+          <span class="project-meta-value">CPSC 581 · HCI II</span>
+        </div>
+        <div class="project-meta-item">
+          <span class="project-meta-label">Tools</span>
+          <span class="project-meta-value">HTML/CSS/JS, Bootstrap, Illustrator</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="project-cover reveal">
+    <div class="project-cover-image" style="background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);">
+      <span style="font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: rgba(255,255,255,0.15); font-style: italic; text-align: center; padding: 0 32px;">Humming Salad Bar</span>
+    </div>
+  </div>
+
+  <article class="project-body">
+
+    <h2 class="reveal">The Brief</h2>
+    <p class="reveal">For my Human Computer Interaction II course, the design challenge was deliberately unconventional: <em>create a unique interaction using sound as input — without the use of words.</em> No speech recognition. No commands. Just raw, human sound as a design material.</p>
+    <p class="reveal">The constraint was the canvas. I explored several directions — a cat game operated by meows, a rhythm-based cricket game — before landing on the idea that felt most genuinely surprising and human: a salad bar that listens to you hum.</p>
+
+    <h2 class="reveal">The Concept</h2>
+    <p class="reveal">The Humming Salad Bar is a mobile web app where users hum a tune into their microphone. Based on the characteristics of the hum — pitch, duration, pattern — the app generates a personalized salad bowl recipe. Users first set their dietary preferences (vegan, gluten-free, etc.), then hum away.</p>
+    <p class="reveal">The delight is in the absurdity: the same song hummed at different pitches produces wildly different salads. It rewards curiosity and repeat interaction in a way that purely visual interfaces rarely do.</p>
+
+    <div class="image-placeholder reveal">Concept Sketches — Salad Bowl Generator, Humming Input, Recipe Panel</div>
+
+    <h2 class="reveal">Design Process</h2>
+    <p class="reveal">I went through five distinct sketch phases before settling on the final layout — exploring different ways to visualize the "listening" state, the countdown before humming, and the recipe reveal. The challenge was communicating what the app was doing and what was expected of the user, entirely without words on screen.</p>
+    <ul class="project-list-items reveal">
+      <li>Ideation across three distinct interaction concepts</li>
+      <li>Sketch series: bowl generator concept, website layout, recipe panel, humming input states</li>
+      <li>Food preferences flow designed to be accessible and quick to complete</li>
+      <li>Custom Illustrator assets to reinforce the playful, hand-crafted visual identity</li>
+      <li>Built and deployed as a responsive mobile web app using HTML, CSS, JavaScript, and Bootstrap</li>
+    </ul>
+
+    <div class="image-placeholder reveal">Final Design — Homepage, Preferences Tab, Humming Countdown, Recipe Result</div>
+
+    <h2 class="reveal">Design Decisions</h2>
+    <p class="reveal"><strong>Tone through visuals:</strong> I chose a light green palette and hand-drawn Illustrator assets to signal playfulness immediately. The visual identity told users before they read a word: this is fun, this is weird, and that's the point.</p>
+    <p class="reveal"><strong>The countdown state:</strong> One of the trickier design problems was the "humming countdown" screen — letting users know they needed to hum without instructions. I landed on an animated countdown with a microphone visual that "listened," giving just enough non-verbal feedback to guide the interaction.</p>
+    <p class="reveal"><strong>Dietary preferences first:</strong> Allowing users to set preferences before humming gave them a sense of agency and personalization — the result felt tailored rather than random. This was key to making repeat use feel worthwhile.</p>
+
+    <h2 class="reveal">Lessons Learned</h2>
+    <p class="reveal">The biggest tension in this project was between randomness and meaning. Too much randomness and the app felt like a novelty with no reason to return. Too little, and the connection between humming and salad felt arbitrary. I learned that even in playful, experimental UX, users need to feel like their input <em>matters</em> — that they have some legible agency over the outcome.</p>
+    <p class="reveal">I also learned to embrace constraints as a creative force. The "no words" rule pushed me into territory I wouldn't have explored otherwise, and the result was far more interesting than a conventional recipe generator would have been.</p>
+
+    <div class="project-links reveal">
+      <a href="https://github.com/riyadhossain1998/Salad-Time" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub</a>
+    </div>
+
+  </article>
+
+  <nav class="project-nav">
+    <div class="project-nav-inner">
+      <a href="project2.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div>
+          <span class="prev-label">Previous Project</span>
+          Omni — Order Management Redesign
+        </div>
+      </a>
+      <div></div>
+    </div>
+  </nav>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-logo">Riyad Hossain</span>
+      <nav class="footer-links">
+        <a href="mailto:riyad.hossain114@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/riyadhossain" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/riyadhossain" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Riyad Hossain. Designed with care in Calgary.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

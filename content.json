@@ -1,0 +1,416 @@
+{
+
+  "_ ======================================================": "",
+  "_  GLOBAL — Shared across all pages                    ": "",
+  "_ ======================================================": "",
+
+  "nav": {
+    "_": "Top navigation bar — logo and link labels/hrefs",
+    "logo": "RH",
+    "links": [
+      { "label": "Work",    "href": "/#work" },
+      { "label": "About",   "href": "about.html" },
+      { "label": "Contact", "href": "/#contact" }
+    ]
+  },
+
+  "footer": {
+    "_": "Footer — name, tagline, and social/contact links",
+    "name": "Riyad Hossain",
+    "tagline": "Designed with care in Calgary.",
+    "links": [
+      { "label": "Email",    "href": "mailto:riyad.hossain114@gmail.com" },
+      { "label": "LinkedIn", "href": "https://linkedin.com/in/riyadhossain" },
+      { "label": "GitHub",   "href": "https://github.com/riyadhossain1998" }
+    ]
+  },
+
+  "_ ======================================================": "",
+  "_  HOME PAGE (index.html)                              ": "",
+  "_ ======================================================": "",
+
+  "hero": {
+    "_": "-- Hero section --",
+    "eyebrow": "UX Designer & Marketing Strategist",
+    "titleLines": ["I design experiences", "that connect people", "to products."],
+    "accentWord": "connect",
+    "subtitle": "Blending strategy, design, and technology to craft digital experiences that are intuitive, human, and results-driven.",
+    "cta": {
+      "_": "-- CTA buttons --",
+      "primary":   { "label": "View My Work", "href": "#work" },
+      "secondary": { "label": "About Me",     "href": "about.html" }
+    }
+  },
+
+  "marquee": {
+    "_": "-- Scrolling ticker strip below hero --",
+    "items": [
+      "UX Design", "UX Research", "Interaction Design", "Marketing Strategy",
+      "Brand Identity", "Prototyping", "Design Systems", "Marketing Automation",
+      "User Interviews", "Adobe XD", "Figma", "Content Strategy"
+    ]
+  },
+
+  "work": {
+    "_": "-- Selected Work / Case Studies section --",
+    "sectionLabel": "Selected Work",
+    "sectionTitle": "Case Studies",
+    "projects": [
+      {
+        "_": "-- Project Card 01 --",
+        "number": "01",
+        "category": "UX Research / Interaction Design",
+        "title": "MusicSurf — Emotion-Driven Music Discovery",
+        "description": "Designing a new paradigm for music exploration — a network-based platform that organizes songs by mood, genre, and emotion rather than playlists. Full process from user interviews to high-fidelity prototype.",
+        "href": "project1.html",
+        "gradient": "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+        "tags": ["UX Research", "Interaction Design", "Adobe XD", "Prototyping"]
+      },
+      {
+        "_": "-- Project Card 02 --",
+        "number": "02",
+        "category": "UX Design / UX Research",
+        "title": "Omni — Retail Order Management Redesign",
+        "description": "Identifying and solving real-world pain points in a retail fulfilment system. Grounded in first-hand experience, this redesign prioritized efficiency, clarity, and ease of adoption for frontline employees.",
+        "href": "project2.html",
+        "gradient": "linear-gradient(135deg, #2c3e50 0%, #3498db 100%)",
+        "tags": ["UX Design", "UX Writing", "Figma", "UX Research"]
+      },
+      {
+        "_": "-- Project Card 03 --",
+        "number": "03",
+        "category": "Interaction Design / Creative Development",
+        "title": "Humming Salad Bar — Sound as Interaction",
+        "description": "Designing a playful, wordless interaction where users hum a tune to generate a personalized salad recipe. A creative HCI challenge exploring sound as a non-traditional input modality.",
+        "href": "project3.html",
+        "gradient": "linear-gradient(135deg, #134e5e 0%, #71b280 100%)",
+        "tags": ["Interaction Design", "Creative UX", "HTML/CSS/JS", "Illustrator"]
+      }
+    ]
+  },
+
+  "aboutTeaser": {
+    "_": "-- About teaser strip on homepage --",
+    "sectionLabel": "A Little About Me",
+    "sectionTitle": "Communication meets creativity.",
+    "bio": "I hold a BA in Communication & Culture from the University of Calgary, with specializations in Computer Science and Visual Studies. I'm a freelancer and client success professional specializing in UX design, web design, and graphic design — with 3+ years of experience in tech and client-facing environments.",
+    "cta": { "label": "More About Me", "href": "about.html" }
+  },
+
+  "contact": {
+    "_": "-- Contact form section --",
+    "sectionLabel": "Get In Touch",
+    "sectionTitle": "Let's work together.",
+    "subtitle": "Have a project in mind or just want to say hello? I'd love to hear from you.",
+    "formAction": "https://formspree.io/f/YOUR_FORM_ID",
+    "submitLabel": "Send Message"
+  },
+
+  "_ ======================================================": "",
+  "_  ABOUT PAGE (about.html)                             ": "",
+  "_ ======================================================": "",
+
+  "aboutPage": {
+    "_": "-- Page header --",
+    "eyebrow": "About Me",
+    "heroTitle": "The story so far.",
+
+    "bio": {
+      "_": "-- Bio paragraphs (array — each item is one paragraph) --",
+      "heading": "Hi, I'm Riyad.",
+      "paragraphs": [
+        "I'm a UX designer, web designer, and marketing strategist based in Calgary, Alberta. I graduated from the University of Calgary with a Bachelor of Arts in Communication & Culture, specializing in Computer Science and Art & Art History — a combination that shaped how I think about design: through the lens of both logic and expression.",
+        "Currently, I work as a Client Success Specialist at ActiveDEMAND, where I help clients get the most out of a marketing automation platform — building landing pages, designing email workflows, and translating complex tools into simple, human experiences. Before that, I spent several years in retail, where I developed a deep appreciation for the people on the front lines of technology. That time directly inspired my Omni redesign project.",
+        "I believe the best digital products feel inevitable — like they couldn't have been designed any other way. My work sits at the intersection of empathy, strategy, and craft. Whether I'm mapping a user journey, wireframing an interface, or writing copy for a landing page, I'm always thinking about the person on the other end of the screen.",
+        "Outside of design, I'm drawn to music, illustration, and building things on the web just to see if I can."
+      ]
+    },
+
+    "skills": {
+      "_": "-- Skills grid section --",
+      "sectionLabel": "What I Bring",
+      "sectionTitle": "Skills & tools I work with.",
+      "groups": [
+        {
+          "heading": "Design",
+          "items": ["UX/UI Design", "Interaction Design", "Wireframing & Prototyping", "User Research & Interviews", "Adobe XD & Illustrator", "Figma", "Photoshop"]
+        },
+        {
+          "heading": "Strategy",
+          "items": ["Marketing Automation", "Content Strategy", "Landing Page Design", "Email Campaign Builds", "Client Onboarding", "UX Writing", "Strategic Planning"]
+        },
+        {
+          "heading": "Development",
+          "items": ["HTML & CSS", "JavaScript", "React", "Python", "Bootstrap", "Responsive Design", "Git & Version Control"]
+        },
+        {
+          "heading": "Soft Skills",
+          "items": ["Client Communication", "Cross-team Collaboration", "Problem Solving", "Technical Documentation", "Active Listening", "Adaptability", "Attention to Detail"]
+        }
+      ]
+    },
+
+    "cta": {
+      "_": "-- Bottom CTA --",
+      "title": "Want to collaborate?",
+      "subtitle": "I'm always open to interesting projects and conversations.",
+      "buttonLabel": "Get In Touch",
+      "buttonHref": "/#contact"
+    }
+  },
+
+  "_ ======================================================": "",
+  "_  PROJECT 1 — MusicSurf (project1.html)               ": "",
+  "_ ======================================================": "",
+
+  "project1": {
+    "_": "-- Page header --",
+    "eyebrow": "Case Study — 01",
+    "title": "MusicSurf",
+    "subtitle": "Designing an emotion-driven music discovery platform that lets users explore music like a forest — by mood, genre, and feeling.",
+    "gradient": "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+
+    "meta": {
+      "_": "-- Project metadata strip --",
+      "role": "UX Design & Research",
+      "timeline": "Jan – Mar 2019",
+      "context": "CPSC 481 · HCI I",
+      "tools": "Adobe XD, Illustrator"
+    },
+
+    "body": {
+      "_": "-- Case study body sections --",
+
+      "problem": {
+        "_": "-- The Problem --",
+        "heading": "The Problem",
+        "paragraphs": [
+          "At the time, no platform allowed users to discover music based on how they actually feel. Spotify and Apple Music surfaced music through auto-generated playlists and algorithm-driven recommendations — with no transparency, no emotional context, and no real sense of exploration. Users weren't in control of how they found new music."
+        ]
+      },
+
+      "solution": {
+        "_": "-- The Solution --",
+        "heading": "The Solution",
+        "paragraphs": [
+          "MusicSurf is a concept platform that uses visualization to create a more natural music browsing experience. It maps important elements of songs — mood, speed, energy, genre — spatially in a network graph, so users can explore music the way you'd wander through a forest: intuitively, emotionally, and freely.",
+          "Instead of playlists and albums, songs are connected to each other by heuristics. Users can follow a path based on how they feel, or let the platform guide them. The result is discovery that feels personal — not algorithmic."
+        ]
+      },
+
+      "process": {
+        "_": "-- Research & Process --",
+        "heading": "Research & Process",
+        "intro": "This was a full end-to-end UX project completed as part of my Human Computer Interaction I course at the University of Calgary. The process included:",
+        "steps": [
+          "Stakeholder analysis and competitive review of existing music platforms",
+          "End-user interviews exploring how people discover and relate to music",
+          "Sketches and paper prototypes to explore the network graph interaction model",
+          "Low-fidelity wireframes for all core screens",
+          "High-fidelity prototype built in Adobe XD with full interaction flows",
+          "Peer and instructor critique sessions with iterated revisions"
+        ]
+      },
+
+      "designDecisions": {
+        "_": "-- Design Decisions --",
+        "heading": "Design Decisions",
+        "paragraphs": [
+          "The colour palette draws from Spotify's dark-theme conventions, using a rich colour range within the network graph itself to communicate mood and genre — warm colours for energetic songs, cooler tones for ambient and melancholic tracks. This created an immediately readable visual language without requiring any text labels.",
+          "Particular attention was paid to the \"Now Playing\" experience — surfacing mood and energy data directly in the interface so users could understand why a song felt the way it did, and seamlessly continue their journey from there."
+        ]
+      },
+
+      "lessons": {
+        "_": "-- Lessons Learned --",
+        "heading": "Lessons Learned",
+        "paragraphs": [
+          "Stakeholder and competitor analysis early in the process was invaluable — it sharpened the focus of the design and gave the team a clear point of difference to design toward. I also learned how to apply and respond to structured critique from peers and instructors, which became a critical part of how I refine work today.",
+          "If I rebuilt this project today, I'd spend more time on user testing with real participants and lean further into accessibility — especially around how colour is used to communicate emotion for users with colour blindness."
+        ]
+      }
+    },
+
+    "links": {
+      "_": "-- CTA buttons at bottom of case study --",
+      "primary":   { "label": "View Live Prototype", "href": "https://colinauyeung.github.io/CPSC-481--MusicSurf/" },
+      "secondary": { "label": "View Documentation",  "href": "https://drive.google.com/file/d/1VT-PEbY7ctVZ7pEy-bpumrkTl9xHWFc8/view?usp=sharing" }
+    },
+
+    "nav": {
+      "_": "-- Prev/next project navigation --",
+      "next": { "label": "Omni — Order Management Redesign", "href": "project2.html" }
+    }
+  },
+
+  "_ ======================================================": "",
+  "_  PROJECT 2 — Omni (project2.html)                    ": "",
+  "_ ======================================================": "",
+
+  "project2": {
+    "_": "-- Page header --",
+    "eyebrow": "Case Study — 02",
+    "title": "Omni — Order Management Redesign",
+    "subtitle": "Redesigning a broken retail fulfilment tool from the inside out — driven by first-hand experience and a deep empathy for the people who use it every shift.",
+    "gradient": "linear-gradient(135deg, #2c3e50 0%, #3498db 100%)",
+
+    "meta": {
+      "_": "-- Project metadata strip --",
+      "role": "UX Design, UX Research, UX Writing",
+      "timeline": "Nov – Dec 2022",
+      "context": "Personal Project",
+      "tools": "Figma"
+    },
+
+    "body": {
+      "_": "-- Case study body sections --",
+
+      "problem": {
+        "_": "-- The Problem --",
+        "heading": "The Problem",
+        "paragraphs": [
+          "Working as a Fulfilment Associate at BuyBuy Baby, I used an order management system called Omni every shift. Over time, I noticed patterns in how my coworkers and I struggled with the same friction points — unclear shelf locations, cluttered order views, unintuitive workflows, and a general sense that the interface was designed for a database, not a person.",
+          "The tool got the job done, but it worked against us rather than with us. In retail, where speed and accuracy directly impact customer satisfaction, a poorly designed tool isn't just a frustration — it's a risk."
+        ]
+      },
+
+      "research": {
+        "_": "-- Research & Discovery --",
+        "heading": "Research & Discovery",
+        "intro": "My research advantage here was unique: I was the user. Over months of daily use, I documented pain points, photographed problem areas, and informally interviewed coworkers about their biggest frustrations. Key insights:",
+        "steps": [
+          "Shelf location data was buried and inconsistent, slowing item retrieval",
+          "Order information was spread across multiple screens, requiring excessive navigation",
+          "The packing and shipping workflow had unnecessary confirmation steps that added no value",
+          "New employees struggled with the learning curve — the system had no clear entry point",
+          "The visual design was dense and low-contrast, increasing cognitive load during busy shifts"
+        ]
+      },
+
+      "solution": {
+        "_": "-- The Redesign --",
+        "heading": "The Redesign",
+        "paragraphs": [
+          "The redesign focused on three core workflows: Prepare Shipments, Pack Shipments, and Completed Orders. Each was reconstructed with a cleaner information hierarchy, more contextual data visible at a glance, and a visual language using familiar BuyBuy Baby brand colours to reduce the jarring feel of a completely new interface.",
+          "I prioritised the principle of progressive disclosure — showing associates only what they need in each step of the workflow, and revealing additional information on demand rather than overwhelming upfront."
+        ]
+      },
+
+      "designDecisions": {
+        "_": "-- Key Design Decisions --",
+        "heading": "Key Design Decisions",
+        "paragraphs": [
+          "Clarity over density: The original interface packed too much information into every view. I restructured the layout to give each data point breathing room — making scanning faster and errors less likely under pressure.",
+          "Familiar branding, fresh UX: Using BuyBuy Baby's colour palette grounded the redesign in something associates already recognized, reducing cognitive resistance to change — a critical factor when redesigning tools for non-technical users who resist learning new systems.",
+          "Empathy-first prioritization: Every design decision was filtered through the question: does this make a tired associate's shift easier or harder?"
+        ]
+      },
+
+      "lessons": {
+        "_": "-- Lessons Learned --",
+        "heading": "Lessons Learned",
+        "paragraphs": [
+          "Being the user gave me incredible research depth, but it also created blind spots. I found myself assuming shared knowledge that newer employees didn't have. This reinforced how important inclusive design is — not just for accessibility, but for onboarding and experience-level diversity within the same user group.",
+          "I also learned that in enterprise and retail tooling, the best UX is often invisible: the goal is that associates don't have to think about the interface at all. They should be focused entirely on the customer."
+        ]
+      }
+    },
+
+    "links": {
+      "_": "-- CTA buttons at bottom of case study --",
+      "primary":   { "label": "View Figma Prototype", "href": "https://www.figma.com/proto/JqpwI8pwnJbz3soo7jZLRB/Omni-V3?node-id=7-30&starting-point-node-id=7%3A30" },
+      "secondary": { "label": "View Documentation",   "href": "https://docs.google.com/document/d/1stKvlE_hEpRjjQwAVDRXpUSw4QFUAgt26g5kU6eHwU0/edit?usp=sharing" }
+    },
+
+    "nav": {
+      "_": "-- Prev/next project navigation --",
+      "prev": { "label": "MusicSurf", "href": "project1.html" },
+      "next": { "label": "Humming Salad Bar", "href": "project3.html" }
+    }
+  },
+
+  "_ ======================================================": "",
+  "_  PROJECT 3 — Humming Salad Bar (project3.html)        ": "",
+  "_ ======================================================": "",
+
+  "project3": {
+    "_": "-- Page header --",
+    "eyebrow": "Case Study — 03",
+    "title": "Humming Salad Bar",
+    "subtitle": "A playful, wordless interaction where your hum becomes your recipe — exploring sound as a non-traditional input modality in web design.",
+    "gradient": "linear-gradient(135deg, #134e5e 0%, #71b280 100%)",
+
+    "meta": {
+      "_": "-- Project metadata strip --",
+      "role": "Interaction Design, Full-Stack Development",
+      "timeline": "Feb – Mar 2021",
+      "context": "CPSC 581 · HCI II",
+      "tools": "HTML/CSS/JS, Bootstrap, Illustrator"
+    },
+
+    "body": {
+      "_": "-- Case study body sections --",
+
+      "brief": {
+        "_": "-- The Brief --",
+        "heading": "The Brief",
+        "paragraphs": [
+          "For my Human Computer Interaction II course, the design challenge was deliberately unconventional: create a unique interaction using sound as input — without the use of words. No speech recognition. No commands. Just raw, human sound as a design material.",
+          "The constraint was the canvas. I explored several directions — a cat game operated by meows, a rhythm-based cricket game — before landing on the idea that felt most genuinely surprising and human: a salad bar that listens to you hum."
+        ]
+      },
+
+      "concept": {
+        "_": "-- The Concept --",
+        "heading": "The Concept",
+        "paragraphs": [
+          "The Humming Salad Bar is a mobile web app where users hum a tune into their microphone. Based on the characteristics of the hum — pitch, duration, pattern — the app generates a personalized salad bowl recipe. Users first set their dietary preferences (vegan, gluten-free, etc.), then hum away.",
+          "The delight is in the absurdity: the same song hummed at different pitches produces wildly different salads. It rewards curiosity and repeat interaction in a way that purely visual interfaces rarely do."
+        ]
+      },
+
+      "process": {
+        "_": "-- Design Process --",
+        "heading": "Design Process",
+        "intro": "I went through five distinct sketch phases before settling on the final layout — exploring different ways to visualize the listening state, the countdown before humming, and the recipe reveal. The full process:",
+        "steps": [
+          "Ideation across three distinct interaction concepts",
+          "Sketch series: bowl generator concept, website layout, recipe panel, humming input states",
+          "Food preferences flow designed to be accessible and quick to complete",
+          "Custom Illustrator assets to reinforce the playful, hand-crafted visual identity",
+          "Built and deployed as a responsive mobile web app using HTML, CSS, JavaScript, and Bootstrap"
+        ]
+      },
+
+      "designDecisions": {
+        "_": "-- Design Decisions --",
+        "heading": "Design Decisions",
+        "paragraphs": [
+          "Tone through visuals: I chose a light green palette and hand-drawn Illustrator assets to signal playfulness immediately. The visual identity told users before they read a word: this is fun, this is weird, and that's the point.",
+          "The countdown state: One of the trickier design problems was the humming countdown screen — letting users know they needed to hum without instructions. I landed on an animated countdown with a microphone visual that listened, giving just enough non-verbal feedback to guide the interaction.",
+          "Dietary preferences first: Allowing users to set preferences before humming gave them a sense of agency and personalization — the result felt tailored rather than random. This was key to making repeat use feel worthwhile."
+        ]
+      },
+
+      "lessons": {
+        "_": "-- Lessons Learned --",
+        "heading": "Lessons Learned",
+        "paragraphs": [
+          "The biggest tension in this project was between randomness and meaning. Too much randomness and the app felt like a novelty with no reason to return. Too little, and the connection between humming and salad felt arbitrary. I learned that even in playful, experimental UX, users need to feel like their input matters — that they have some legible agency over the outcome.",
+          "I also learned to embrace constraints as a creative force. The 'no words' rule pushed me into territory I wouldn't have explored otherwise, and the result was far more interesting than a conventional recipe generator would have been."
+        ]
+      }
+    },
+
+    "links": {
+      "_": "-- CTA buttons at bottom of case study --",
+      "primary": { "label": "View on GitHub", "href": "https://github.com/riyadhossain1998/Salad-Time" }
+    },
+
+    "nav": {
+      "_": "-- Prev/next project navigation --",
+      "prev": { "label": "Omni — Order Management Redesign", "href": "project2.html" }
+    }
+  }
+
+}
