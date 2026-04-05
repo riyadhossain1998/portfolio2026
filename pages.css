@@ -219,6 +219,38 @@
   margin-bottom: 16px;
 }
 
+.project-list-items {
+  list-style: none;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-list-items li {
+  font-size: 1rem;
+  color: var(--text-light);
+  font-weight: 300;
+  line-height: 1.7;
+  padding-left: 20px;
+  position: relative;
+}
+
+.project-list-items li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-lighter);
+  font-size: 0.85rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 48px;
+}
+
 .project-body .image-placeholder {
   width: 100%;
   aspect-ratio: 16 / 10;
