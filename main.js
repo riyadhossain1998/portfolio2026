@@ -172,6 +172,58 @@ function initContactForm() {
 }
 
 // ============================================
+// IMAGE LIGHTBOX MODAL
+// ============================================
+function initImageModal() {
+  const figures = document.querySelectorAll('.project-figure img');
+  if (!figures.length) return;
+
+  // Build modal DOM once
+  const modal = document.createElement('div');
+  modal.className = 'img-modal';
+  modal.innerHTML = `
+    <div class="img-modal-backdrop"></div>
+    <div class="img-modal-content">
+      <img src="" alt="">
+      <span class="img-modal-caption"></span>
+    </div>
+    <button class="img-modal-close" aria-label="Close image">&#x2715;</button>
+  `;
+  document.body.appendChild(modal);
+
+  const modalImg     = modal.querySelector('.img-modal-content img');
+  const modalCaption = modal.querySelector('.img-modal-caption');
+  const backdrop     = modal.querySelector('.img-modal-backdrop');
+  const closeBtn     = modal.querySelector('.img-modal-close');
+
+  function openModal(src, alt, caption) {
+    modalImg.src = src;
+    modalImg.alt = alt;
+    modalCaption.textContent = caption || '';
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  figures.forEach(img => {
+    img.addEventListener('click', () => {
+      const caption = img.closest('figure')?.querySelector('figcaption')?.textContent || '';
+      openModal(img.src, img.alt, caption);
+    });
+  });
+
+  backdrop.addEventListener('click', closeModal);
+  closeBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+}
+
+// ============================================
 // INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -181,4 +233,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initMagnetic();
   initContactForm();
+  initImageModal();
 });
