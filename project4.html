@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popified Networks — Riyad Hossain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <nav class="nav scrolled">
+    <a href="/" class="nav-logo">RH</a>
+    <div class="nav-links">
+      <a href="/#work" class="active">Work</a>
+      <a href="about.html">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       PAGE HEADER
+       ============================================= -->
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <p class="hero-eyebrow reveal">Case Study — 01</p>
+      <h1 class="page-hero-title reveal reveal-delay-1">Popified Networks</h1>
+      <p class="page-hero-subtitle reveal reveal-delay-2">Turning any Spotify playlist into an explorable map of real, credited collaborations — where every link is provable by the tracks behind it and every discovery is one click from playing.</p>
+      <div class="project-hero-meta reveal reveal-delay-3">
+        <div class="project-meta-item">
+          <span class="project-meta-label">Role</span>
+          <span class="project-meta-value">Solo — Product, UX, Front-End & Back-End</span>
+        </div>
+        <div class="project-meta-item">
+          <span class="project-meta-label">Timeline</span>
+          <span class="project-meta-value">Oct 2018 → Sept 2026</span>
+        </div>
+        <div class="project-meta-item">
+          <span class="project-meta-label">Context</span>
+          <span class="project-meta-value">Self-Directed</span>
+        </div>
+        <div class="project-meta-item">
+          <span class="project-meta-label">Tools</span>
+          <span class="project-meta-value">Python, Flask, D3.js, Spotify API</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cover image -->
+  <div class="project-cover reveal">
+    <div class="project-cover-image" style="background: linear-gradient(135deg, #0a0a0a 0%, #0d1a0d 50%, #121212 100%); padding: 0; overflow: hidden;">
+      <!-- TODO-IMAGE-pn-01: id="pn-cover" · Current Popified Networks UI — full graph view, Taylor Swift or EDM Hits network on dark background · alt="Popified Networks — collaboration network graph" -->
+      <div class="image-placeholder" data-src="TODO-IMAGE-pn-01" style="background: transparent; border: none; color: rgba(255,255,255,0.2); width: 100%; height: 100%;">TODO-IMAGE-pn-01 · Hero graph view</div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       CASE STUDY BODY
+       ============================================= -->
+  <article class="project-body">
+
+    <h2 class="reveal">Origin</h2>
+    <p class="reveal">In October 2018, at the University of Calgary, I designed <strong>MusicSurf</strong> — an emotion-driven concept that organised songs by mood, genre and emotion in a network structure rather than as playlists. Full process: user interviews, paper prototypes, high-fidelity Adobe XD prototype. MusicSurf mapped music by how it <em>feels</em>.</p>
+    <p class="reveal">Popified Networks asks the harder question underneath it: what if the network mapped the <em>people</em> — who actually made the record with whom? Moods are interpretive. Collaboration credits are fact.</p>
+    <p class="reveal">I built a first working version in November 2023 — Python and Spotipy pulling from Spotify's API, data exported to JSON, rendered locally in Flask. Enough to prove the collaboration data existed and could be extracted. I came back in September 2026 and rebuilt it properly: structured Flask app, D3.js front end, OAuth login, a static public demo, and a privacy-first analytics pipeline.</p>
+    <div class="image-grid-2 reveal">
+      <figure class="project-figure">
+        <img src="images/musicsurf/explore_hifi.png" alt="MusicSurf high-fidelity prototype — Explore screen, 2018">
+        <figcaption>MusicSurf — Explore screen, Adobe XD prototype (Oct 2018)</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <!-- TODO-IMAGE-pn-02: id="pn-gen1" · Gen 1 prototype (Nov 2023) — browser screenshot at 127.0.0.1:5000, Lil Uzi Vert graph with artist photo nodes on white background · alt="Gen 1 prototype — local Flask app, November 2023" -->
+        <div class="image-placeholder" data-src="TODO-IMAGE-pn-02">TODO-IMAGE-pn-02 · Gen 1 prototype (Nov 2023, 127.0.0.1:5000)</div>
+        <figcaption>Gen 1 prototype — local Flask app (Nov 2023)</figcaption>
+      </figure>
+    </div>
+
+    <h2 class="reveal">The Problem</h2>
+    <p class="reveal">A playlist is a vertical list, and a list can only ever show you <em>order</em>. It cannot show you <em>relationship</em>. Two artists can sit forty rows apart and have made six songs together, and the interface will never tell you.</p>
+    <p class="reveal">Collaboration builds careers, crosses audiences and defines scenes. Yet the record of who worked with whom exists only as credits on individual tracks — accurate, complete, and structurally invisible. Questions a label, manager, or journalist would reasonably ask have no tool behind them: who is this artist's real collaborative circle, including the tracks they appear on rather than headline? How connected is this roster to itself, and where are the gaps? What do these two artists share, specifically — and can you prove it? Today those get answered by memory or a manual discography trawl.</p>
+
+    <h2 class="reveal">The Constraint That Defined the Product</h2>
+    <p class="reveal">Getting from "the collaboration data technically exists" to "a stranger can open a link and explore it" meant working around several hard platform limits. Each constraint became a design decision.</p>
+    <ul class="project-list-items reveal">
+      <li><strong>Spotify apps are capped at 5 users in Development Mode.</strong> Extended Quota requires a registered business entity and roughly 250k MAU. Since May 2025, individuals aren't accepted. A login-first product would have reached five people on earth. Response: pre-build the graphs offline so the product delivers value with no account at all.</li>
+      <li><strong>Spotify has no "who has this artist worked with" endpoint.</strong> The core question the product answers can't be asked directly. Response: derive it — walk every track in a playlist, extract all credited artists, build edges from co-occurrence.</li>
+      <li><strong>Genre data was coarsened</strong> until a diverse playlist collapsed into around three buckets. A shipped feature became informationally worthless. Response: removed it (more on this below).</li>
+      <li><strong>Rate limits and batch-size caps</strong> on metadata lookups caused naive fetching to fail on large catalogues. Response: batched requests, retry with backoff, cached results.</li>
+    </ul>
+    <p class="reveal">The reframe that made everything possible: instead of asking Spotify for a collaboration graph it cannot produce, treat <em>any playlist</em> as the unit of analysis. A full discography, a label roster, a scene — all expressible as a playlist, all graphable. <strong>The limitation became the interface.</strong></p>
+    <div class="image-grid-2 reveal">
+      <figure class="project-figure">
+        <!-- TODO-IMAGE-pn-03: id="pn-sketch-layout" · Notebook sketch of webpage layout — hand-drawn boxes for Title, Nav, Nodes Info, Graph sections · alt="Hand-drawn layout sketch showing Title, Nav, Nodes, and Graph regions" -->
+        <div class="image-placeholder" data-src="TODO-IMAGE-pn-03">TODO-IMAGE-pn-03 · Webpage layout sketch (notebook)</div>
+        <figcaption>Layout concept sketch — defining the page regions</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <!-- TODO-IMAGE-pn-04: id="pn-sketch-flow" · Notebook sketch of user flow — Login, Settings, Default Graph, Nodes, Modal, Play Song, Preview Song, Playlist bubbles connected with arrows · alt="Hand-drawn user flow diagram showing Login through to song playback" -->
+        <div class="image-placeholder" data-src="TODO-IMAGE-pn-04">TODO-IMAGE-pn-04 · User flow sketch (Login → Default Graph → Nodes → Modal)</div>
+        <figcaption>User flow — from login through to song playback</figcaption>
+      </figure>
+    </div>
+
+    <h2 class="reveal">Where It Sits in the Market</h2>
+    <p class="reveal">The music discovery landscape splits into two fundamentally different things: <em>credit data</em> — a fact, these two names appear on this recording — and <em>similarity data</em> — an inference, these two names sound or feel adjacent. You cannot derive the first from the second, and this distinction determines whether a product could ever have answered the question this one asks.</p>
+    <p class="reveal">MusicBrainz and Discogs do hold collaboration data, and MusicBrainz models it as a first-class relationship type. But both render it as hyperlinked text you walk one hop at a time — open a page, scan a list, follow a link, open another page. The gap isn't the data. It's the representation. Nobody joins credit data to a visual structure where the <em>shape itself</em> is the information.</p>
+    <p class="reveal">Spotify was the right choice for three practical reasons: it returns artist photographs in the same API response as the credit data (the face-as-node decision only works because of this), it offers playback, and batch endpoints resolve hundreds of artists in a handful of requests. One reason has since expired: until February 2026, the API read any public playlist by ID. A platform change made that a 403 — the workflow is now <em>copy the playlist to your own account first</em>. The decision was correct when I made it; the platform moved underneath it.</p>
+
+    <h2 class="reveal">The Architecture Decision</h2>
+    <p class="reveal">A login-first design would have served five people. The response: invert the funnel.</p>
+    <p class="reveal">Nine playlists are pre-built offline by a Python script and published as static JSON. A visitor gets a 369-artist, 527-connection graph with no account, no redirect, and no quota. Login became a bonus for the few who have it — not a gate for everyone who doesn't. Around 85% of visits across the first five days never reached the login page, which is the clearest possible validation: a login-first architecture would have lost almost everyone.</p>
+    <div class="image-grid-2 reveal">
+      <figure class="project-figure">
+        <!-- TODO-IMAGE-pn-05: id="pn-earlyui" · Early "Feature Network" UI — dark background, Cashmere Cat selected in left panel showing 320,894 followers and 1 song (Wild Love feat. The Weeknd), large collaboration graph on right · alt="Early Feature Network UI with Cashmere Cat detail panel open" -->
+        <div class="image-placeholder" data-src="TODO-IMAGE-pn-05">TODO-IMAGE-pn-05 · Early "Feature Network" UI — Cashmere Cat detail panel</div>
+        <figcaption>Early build — "Feature Network" with artist detail panel</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <!-- TODO-IMAGE-pn-06: id="pn-sketch-modal" · Notebook sketch labelled "Modals" and "Song Randomizer?!" — hand-drawn modal with artist placeholder and 200k followers, plus drag-to-spin wheel concept below · alt="Notebook sketches of modal design and song randomizer concept" -->
+        <div class="image-placeholder" data-src="TODO-IMAGE-pn-06">TODO-IMAGE-pn-06 · Modal and Song Randomizer concept sketches (notebook)</div>
+        <figcaption>Ideation sketches — modal layout and song randomizer concept</figcaption>
+      </figure>
+    </div>
+
+    <h2 class="reveal">Designing the Graph</h2>
+    <p class="reveal">The central visual decision: use the artist's photograph as the node. Recognition is instant and pre-verbal — you spot a face before you read a name. Node size encodes song count on the playlist; larger nodes are more prominent on that particular catalogue. Link thickness encodes shared song count; a thicker line means a denser collaboration. A green ring marks the main artist on discography-focused playlists — an anchor point that orients you before you interact with anything.</p>
+    <p class="reveal">The palette is dark-first. The graph's content <em>is</em> artist photography — roughly 369 simultaneous images on the largest dataset. A dark canvas lets the photographs carry the colour while the chrome recedes. The design system lives as CSS custom properties, and a build script copies the app's real CSS into the published static demo so both front ends share one source and cannot drift apart.</p>
+    <div class="image-grid-2 reveal">
+      <figure class="project-figure">
+        <!-- TODO-IMAGE-pn-07: id="pn-hifi-graph" · Mid-generation dark graph with artist photos as nodes — Eminem, Drake, Lil Wayne, Nicki Minaj, Juice WRLD etc. visible, dark background, photo-circle nodes · alt="Popified Networks mid-generation graph with artist photo nodes on dark background" -->
+        <div class="image-placeholder" data-src="TODO-IMAGE-pn-07">TODO-IMAGE-pn-07 · Graph with artist photo nodes (dark background)</div>
+        <figcaption>Artist photos as nodes — mid-generation build</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <!-- TODO-IMAGE-pn-08: id="pn-detail-panel" · Current Popified Networks — Taylor Swift graph with Post Malone selected, right panel showing "49.4M followers · 2 collaborators", 2 Fortnight songs listed with play buttons · alt="Popified Networks detail panel — Post Malone selected in Taylor Swift network" -->
+        <div class="image-placeholder" data-src="TODO-IMAGE-pn-08">TODO-IMAGE-pn-08 · Detail panel — Post Malone selected (Taylor Swift network)</div>
+        <figcaption>Detail panel — shared tracks between two artists</figcaption>
+      </figure>
+    </div>
+
+    <h2 class="reveal">What the Data Showed</h2>
+    <p class="reveal">The five-day dataset — 59 page views, 96 artist clicks, 21 song clicks, 6 Spotify opens — came from friends, not a marketing push. Engagement rates are flattered by that warm audience; someone who wants you to succeed tries harder than a stranger would. Drop-off points are what I trust: if a friendly audience still abandoned at a step, that step has real friction regardless of who's watching.</p>
+    <p class="reveal">1.6 artist clicks per visit on the public demo. Clicking is entirely optional, so that number means people are genuinely exploring the graph rather than bouncing off it. Logged-in visits averaged 2.9 clicks — nearly double — which points at personal relevance as the stronger driver. Around 85% of visits never reached the login page, confirming the value-first architecture. The conversion from seeing to hearing had the most friction: 31% of artist clicks led to a song click, and 26% of those led to playback. The leading hypothesis is that the detail panel sits below the graph on mobile — the result of a tap may be entirely off-screen — and that playback requires an active Spotify device, leaving users without one at a dead end. Those are the two things I'd test first.</p>
+    <div class="image-grid-2 reveal">
+      <figure class="project-figure">
+        <!-- TODO-IMAGE-pn-09: id="pn-final-full" · Final Popified Networks UI — full page view with playlist picker row (EDM Hits, 2016-2020, Taylor Swift selected etc.), Taylor Swift graph, Hide Unconnected toggle, "Nothing selected" panel, legend at bottom · alt="Popified Networks — full UI with playlist picker, graph canvas, and detail panel" -->
+        <div class="image-placeholder" data-src="TODO-IMAGE-pn-09">TODO-IMAGE-pn-09 · Full current UI — playlist picker + graph + detail panel</div>
+        <figcaption>Current build — playlist picker, graph canvas, and detail panel</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <!-- TODO-IMAGE-pn-10: id="pn-mobile" · Mobile view or the "Features Visualizer" early white-background version showing Eminem & Lil Wayne Songs modal (early mockup) — whichever best shows a contrast with the current UI · alt="Early Features Visualizer mockup — Eminem and Lil Wayne shared songs modal" -->
+        <div class="image-placeholder" data-src="TODO-IMAGE-pn-10">TODO-IMAGE-pn-10 · Early "Features Visualizer" mockup (white, simple nodes)</div>
+        <figcaption>Early wireframe — "Features Visualizer" with shared-songs modal</figcaption>
+      </figure>
+    </div>
+
+    <h2 class="reveal">Killing a Feature That Worked</h2>
+    <p class="reveal">I shipped a genre mode — the same graph clustered by genre rather than by free-directed layout. It worked technically. I removed it. Spotify had coarsened its genre data to the point where an entire diverse playlist collapsed into around three buckets. The feature was technically working and informationally worthless. Removing something that runs but fails is harder than removing something that breaks, and it's the product decision in this project I'd most want to talk through.</p>
+
+    <h2 class="reveal">Where This Goes</h2>
+    <p class="reveal">Strip out the music domain and this product is a relationship-mapping engine: take a set of entities, derive their connections from shared events, make the resulting structure explorable and provable. Artists and tracks are one instance of that pattern. The same model describes co-authors and papers, actors and films, companies and contracts, contributors and repositories — any domain where the relationships are implicit in the records but never assembled into a shape anyone can see. Music was the right first domain because the data is public, the relationships are dense, and I could tell immediately whether a result was true. It's a proving ground for the general problem, and that's the direction I'm taking this work.</p>
+    <p class="reveal">Three things I'd change starting over: run five moderated usability sessions before touching any code; wireframe the responsive layout even for five minutes (the topbar at 320px was a hard-learnt lesson); and make clear from the first interaction that the <em>links</em> are clickable. The most interesting content in the product lives on those connections, and nothing in the current UI says so.</p>
+
+    <div class="project-links reveal">
+      <a href="https://riyadhossain1998.github.io/Spotified" target="_blank" rel="noopener" class="btn btn-primary">View Live Demo</a>
+      <a href="https://github.com/riyadhossain1998/Feature-Network-master" target="_blank" rel="noopener" class="btn btn-ghost">View Source</a>
+    </div>
+
+  </article>
+
+  <!-- =============================================
+       PROJECT NAV
+       ============================================= -->
+  <nav class="project-nav">
+    <div class="project-nav-inner">
+      <div></div>
+      <a href="project1.html" class="nav-next">
+        <div>
+          <span class="next-label">Next Project</span>
+          MusicSurf — Emotion-Driven Music Discovery
+        </div>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-logo">Riyad Hossain</span>
+      <nav class="footer-links">
+        <a href="mailto:riyad.hossain114@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/riyad-hossain-30773914b" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/riyadhossain1998" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 Riyad Hossain. Designed with care in Calgary.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
