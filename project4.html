@@ -158,27 +158,13 @@
       <figcaption>Lil Wayne selected, connections highlighted green, and 34 songs listed in the panel. This one view shows node size encoding, edge encoding, and what I mean by every connection being backed by real tracks.</figcaption>
     </figure>
 
-    <div class="image-grid-3 reveal">
-      <figure class="project-figure">
-        <img src="images/musicsurf/explore_lowfi.png" alt="MusicSurf low-fidelity wireframe of the Explore screen">
-        <figcaption>MusicSurf, Explore screen, low fidelity</figcaption>
-      </figure>
-      <figure class="project-figure">
-        <img src="images/musicsurf/Explore.png" alt="MusicSurf high-fidelity design of the Explore screen">
-        <figcaption>MusicSurf, Explore screen, high fidelity</figcaption>
-      </figure>
-      <figure class="project-figure">
-        <img src="images/musicsurf/exploremore_sketch.png" alt="MusicSurf early hand sketch of the Explore More screen">
-        <figcaption>MusicSurf, Explore More, early sketch</figcaption>
-      </figure>
-    </div>
-
     <h2 class="reveal">What the Data Showed</h2>
     <p class="reveal">I want to be upfront about where this data came from. I sent the link to friends, not a marketing push. Over five days I got 59 page views, 96 artist clicks, 21 song clicks, and 6 Spotify opens. Engagement rates are probably a bit inflated by that kind of warm audience, since someone who wants a project to succeed will try harder than a stranger would. What I actually trust is the drop-off data, because if a friendly audience still abandoned at a step, that step has real friction regardless of who's watching.</p>
     <p class="reveal">The public demo averaged 1.6 artist clicks per visit, which I found pretty encouraging since clicking is entirely optional. The bigger issue was the conversion from seeing to hearing. Only 31% of artist clicks led to a song click, and only 26% of those led to actual playback. My best hypothesis is that on mobile the detail panel sits below the graph, so the result of a tap is probably off-screen and people don't realize it's there. The other issue is that playback requires an active Spotify device, so anyone without one running hits a dead end. Those are the two things I'd want to test first.</p>
 
     <h2 class="reveal">Killing a Feature That Worked</h2>
-    <p class="reveal">I shipped a genre mode, which was the same graph clustered by genre instead of by force-directed layout. It worked technically. I removed it. Spotify had coarsened its genre data to the point where an entire diverse playlist collapsed into around three buckets, which made the feature pretty much useless from an information standpoint. Removing something that runs but delivers nothing is harder than removing something that's broken, and it's probably the product decision in this project I'd most want to talk through.</p>
+    <p class="reveal">I wanted to add a genre mode: the same graph, but with nodes clustered by genre instead of by force-directed layout. The problem was that Spotify's genre data kept coming back blank at the track level. The workaround was to pull genre from the artist instead, but that introduced a different issue. Artists pivot. Drake has made house music. Grouping a diverse playlist by artist genre collapsed everything into around three broad buckets, which made the visual completely unreadable and the clustering meaningless.</p>
+    <p class="reveal">I removed it. Based on my competitive analysis, per-track genre data does exist elsewhere, MusicBrainz and Discogs both hold it, and getting it from one of those platforms is the path I'd take if I revisited this. The feature isn't impossible. It just can't be built on top of what Spotify exposes today. Removing something that runs but delivers nothing is a harder call than removing something that's broken, and it's probably the decision in this project I'd most want to talk through.</p>
 
     <h2 class="reveal">Where This Goes</h2>
     <p class="reveal">Stripping out the music domain, what I built is a relationship-mapping engine: take a set of entities, derive their connections from shared events, and make the resulting structure explorable and provable. Artists and tracks are one instance of that pattern, but the same model works for co-authors and papers, actors and films, companies and contracts, contributors and repositories, really any domain where relationships are implicit in the records but nobody has assembled them into something visual. Music was the right first domain to try this in because the data is public, the relationships are dense, and I could tell right away whether a result was correct. I'm planning to take this further, and the general relationship-mapping problem is the direction I'm most interested in.</p>
