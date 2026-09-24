@@ -149,38 +149,35 @@
    ABOUT PAGE — DYNAMIC LAYOUT
    ============================================ */
 
+/* Intro */
 .about-intro {
-  padding: 0 48px 80px;
+  padding: 0 48px 96px;
 }
 
 .about-intro-inner {
   max-width: 960px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 56px;
+  grid-template-columns: 1fr 240px;
+  gap: 64px;
   align-items: start;
 }
 
-.about-intro-photo {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 2px solid var(--border);
-}
-
-.about-intro-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.about-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-lighter);
+  font-weight: 500;
+  margin-bottom: 14px;
 }
 
 .about-intro-text h2 {
   font-family: var(--serif);
-  font-size: 1.75rem;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
   font-weight: 400;
   margin-bottom: 20px;
+  letter-spacing: -0.02em;
 }
 
 .about-intro-text p {
@@ -191,26 +188,47 @@
   margin-bottom: 16px;
 }
 
+.about-intro-text p:last-child {
+  margin-bottom: 0;
+}
+
+.about-intro-photo {
+  width: 240px;
+  height: 300px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.about-intro-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Split sections */
 .about-dynamic {
-  padding: 0 48px 80px;
+  padding: 0 48px 96px;
 }
 
 .about-split {
-  max-width: 1100px;
+  max-width: 960px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: 72px;
   align-items: start;
 }
 
 .about-split-heading {
   font-family: var(--serif);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 400;
-  line-height: 1.1;
-  margin-bottom: 28px;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  letter-spacing: -0.025em;
 }
 
 .about-split-text p {
@@ -218,7 +236,7 @@
   color: var(--text-light);
   line-height: 1.85;
   font-weight: 300;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .about-split-text p:last-child {
@@ -228,33 +246,34 @@
 .about-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
 .about-card {
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 18px;
+  border-radius: 10px;
+  padding: 16px 14px;
   background: var(--bg-alt);
 }
 
 .about-card-title {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 6px;
-  line-height: 1.3;
+  margin-bottom: 5px;
+  line-height: 1.35;
 }
 
 .about-card-sub {
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   color: var(--text-lighter);
-  line-height: 1.55;
+  line-height: 1.5;
+  font-weight: 300;
 }
 
 .about-pullquote {
-  padding-top: 16px;
+  padding-top: 18px;
   border-top: 1px solid var(--border);
   font-size: 0.875rem;
   color: var(--text-light);
@@ -262,17 +281,20 @@
 }
 
 .about-pullquote strong {
+  display: block;
   color: var(--text);
   font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
 }
 
 /* Timeline */
 .about-timeline-section {
-  padding: 0 48px 80px;
+  padding: 0 48px 96px;
 }
 
 .about-timeline-inner {
-  max-width: 1100px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
@@ -295,8 +317,8 @@
 
 .about-timeline-item {
   position: relative;
-  padding-top: 24px;
-  padding-right: 24px;
+  padding-top: 26px;
+  padding-right: 20px;
 }
 
 .about-timeline-dot {
@@ -321,7 +343,7 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text-lighter);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-weight: 500;
 }
 
@@ -334,7 +356,7 @@
 }
 
 .about-timeline-desc {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-light);
   line-height: 1.55;
   font-weight: 300;
@@ -669,7 +691,7 @@
   }
 
   .about-intro {
-    padding: 0 24px 60px;
+    padding: 0 24px 64px;
   }
 
   .about-intro-inner {
@@ -678,11 +700,12 @@
   }
 
   .about-intro-photo {
-    max-width: 160px;
+    width: 160px;
+    height: 200px;
   }
 
   .about-dynamic {
-    padding: 0 24px 60px;
+    padding: 0 24px 64px;
   }
 
   .about-split {
@@ -695,7 +718,7 @@
   }
 
   .about-timeline-section {
-    padding: 0 24px 60px;
+    padding: 0 24px 64px;
   }
 
   .about-timeline-track {
