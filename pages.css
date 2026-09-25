@@ -301,7 +301,7 @@
 .about-timeline-track {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .about-timeline-track::before {
@@ -459,6 +459,65 @@
   left: 0;
   color: var(--text-lighter);
   font-size: 0.85rem;
+}
+
+/* Data table */
+.data-table-wrap {
+  margin: 8px 0 20px;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-light);
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 10px 14px 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.data-table thead th {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--text-lighter);
+}
+
+.data-table thead th + th {
+  text-align: right;
+}
+
+.data-table tbody th {
+  font-weight: 400;
+  color: var(--text);
+}
+
+.data-table tfoot th,
+.data-table tfoot td {
+  font-weight: 500;
+  color: var(--text);
+  border-bottom: none;
+}
+
+.data-table-note {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-lighter);
+  margin-left: 8px;
 }
 
 .project-links {
