@@ -560,6 +560,56 @@
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
 }
 
+/* Inline pipeline diagram */
+.diagram-svg {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+  margin: 8px auto 0;
+}
+
+.diagram-svg text {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.diagram-svg .d-label { fill: var(--text); }
+
+.diagram-svg .d-sub {
+  fill: var(--text-light);
+  font-size: 12px;
+}
+
+.diagram-svg .d-box {
+  fill: var(--bg-alt);
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.diagram-svg .d-branch {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+
+.diagram-svg .d-line {
+  stroke: var(--text-light);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.diagram-svg .d-dash {
+  stroke: var(--text-light);
+  stroke-width: 1.25;
+  fill: none;
+  stroke-dasharray: 4 3;
+}
+
+.diagram-svg .d-head { fill: var(--text-light); }
+
 /* ============================================
    IMAGE LIGHTBOX MODAL
    ============================================ */
