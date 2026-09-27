@@ -57,7 +57,7 @@
   <!-- Cover image -->
   <div class="project-cover reveal">
     <div class="project-cover-image" style="padding: 0; overflow: hidden;">
-      <img src="images/featurenet/popified-hero.jpg" alt="Popified Networks fullscreen view of the EDM Hits collaboration network showing hundreds of artist nodes connected by edges on a dark background" style="width: 100%; height: 100%; object-fit: cover;">
+      <img src="images/featurenet/popified-hero.jpg" alt="Popified Networks fullscreen view of the EDM Hits collaboration network showing hundreds of artist nodes and the connections between them on a dark background" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
   </div>
 
@@ -67,25 +67,25 @@
   <article class="project-body">
 
     <h2 class="reveal">The short version</h2>
-    <p class="reveal">Popified Networks turns a Spotify playlist into a map of which artists have actually made songs together, and every connection links back to real tracks. I designed and built it alone in Python, Flask, D3.js and the Spotify API.</p>
+    <p class="reveal">Popified Networks turns a Spotify playlist into a map of which artists have made songs together. I designed and built it alone in Python, Flask, D3.js and the Spotify API.</p>
 
-    <p class="reveal">Underneath the music it's a general structure: take a set of entities, derive their connections from the events they share, and make the resulting shape explorable and provable. Here the entities are artists and the shared events are songs, so two artists credited on the same track become a link, and artists who have recorded together repeatedly become a thick one. The same pattern fits authors and papers, actors and films, companies and contracts, or contributors and repositories. Any domain where the relationships already sit in the records but nobody has assembled them into something you can look at.</p>
+    <p class="reveal">Underneath the music it's a general structure: take a set of entities, derive their connections from the events they share, and make the resulting shape explorable and provable. Here the entities are artists and the shared events are songs. Two artists credited on the same track become a connection; artists who have recorded together repeatedly become a thick one. The same pattern fits authors and papers, actors and films, companies and contracts, or contributors and repositories. Any domain where the relationships already sit in the records but nobody has assembled them into something you can look at.</p>
 
-    <p class="reveal">Music was a deliberate choice for the first test domain. The data is public, the relationships are dense enough to make a graph worth looking at, and I could check correctness by eye, which won't be true of the domains where this would be most useful.</p>
+    <p class="reveal">Music was a deliberate choice for the first test domain. The data is public, and the relationships are dense enough to make a graph worth looking at.</p>
 
-    <p class="reveal">Spotify caps apps in Development Mode at five users, so I precomputed nine playlist graphs and serve them as static JSON. Together they cover 1,649 unique artists and 3,540 unique connections, explorable without an account.</p>
+    <p class="reveal">Spotify caps apps in Development Mode at five users, so I precomputed nine playlist graphs and serve them as static JSON: 1,649 unique artists and 3,540 unique connections, explorable without an account.</p>
 
-    <p class="reveal">I shared it with friends for five days as a smoke test: 59 page views, 96 artist clicks, 21 song clicks, 6 Spotify opens. Roughly a fifth of artist clicks led to a song click. That's the drop off I'd look at next, though a sample this small and friendly can't tell me why.</p>
+    <p class="reveal">I shared it with friends for five days as a smoke test: 59 page views, 96 artist clicks, 21 song clicks, 6 Spotify opens. The drop off from artist clicks to song clicks is what I'd look at next, though a sample this small and friendly can't tell me why.</p>
 
     <h2 class="reveal">Where It Started</h2>
-    <p class="reveal">The idea behind this goes back to 2019, and it's one I kept coming back to as my skills caught up with it. The 2026 rebuild is the point where I could finally do the original concept justice against a live API.</p>
+    <p class="reveal">The idea goes back to 2019, and I kept returning to it as my skills caught up with it.</p>
 
-    <p class="reveal"><strong>Fall 2019: MusicSurf.</strong> MusicSurf was a four person team project in CPSC 481, my Human Computer Interaction course at the University of Calgary. We ran a full UX process together, including user interviews, paper prototypes, and a high fidelity Adobe XD prototype. I led the interaction design for the node graph menu, and the sketches below are mine. It organized songs by mood, genre and emotion into a network structure instead of playlists, and that was really where the nodes and links model came from. MusicSurf was about mapping music by how it felt.</p>
+    <p class="reveal"><strong>Fall 2019: MusicSurf.</strong> MusicSurf was a four person team project in CPSC 481, my Human Computer Interaction course at the University of Calgary. We ran a full UX process together, including user interviews, paper prototypes, and a high fidelity Adobe XD prototype. I led the interaction design for the node graph menu, and the sketches below are mine. It organized songs by mood, genre and emotion into a network structure instead of playlists, and that's where the nodes and connections model came from.</p>
 
     <div class="image-grid-2 reveal">
       <figure class="project-figure">
         <img src="images/musicsurf/graphmenu_sketch.jpg" alt="MusicSurf hand sketch of the node graph menu concept, 2019" loading="lazy">
-        <figcaption>MusicSurf, original sketch of the node graph menu, 2019. The network structure was there from the very start.</figcaption>
+        <figcaption>MusicSurf, original sketch of the node graph menu, 2019.</figcaption>
       </figure>
       <figure class="project-figure">
         <img src="images/musicsurf/graphmenu_lowfi.jpg" alt="MusicSurf low fidelity wireframe showing the music library as a connected node graph" loading="lazy">
@@ -104,25 +104,25 @@
       </figure>
     </div>
 
-    <p class="reveal"><strong>Spring 2020: Exploring the Spotify API.</strong> This wasn't a proper project at all, more like casual tinkering on evenings and weekends. I wanted to know whether collaboration credits could actually be pulled from the API, and it turned out they could. The earliest sketches already had shared song counts on the edges and the actual track list behind each connection, and those two ideas are still what the product is built around today.</p>
+    <p class="reveal"><strong>Spring 2020: Exploring the Spotify API.</strong> Not a proper project, more casual tinkering on evenings and weekends. I wanted to know whether collaboration credits could be pulled from the API. They could. The earliest sketches already had shared song counts on the connections and the track list behind each one, and both ideas still anchor the product today.</p>
 
     <div class="image-grid-2 reveal">
       <figure class="project-figure">
         <img src="images/featurenet/prototype-graph.png" alt="Features Visualizer earliest concept showing plain circles labelled Eminem, Jay-Z, Drake and Lil Wayne with shared song counts on each edge" loading="lazy">
-        <figcaption>"Features Visualizer", the earliest concept. Plain circles as nodes, but the shared song counts on each edge were already there.</figcaption>
+        <figcaption>"Features Visualizer", the earliest concept. Plain circles as nodes, with the shared song counts already there.</figcaption>
       </figure>
       <figure class="project-figure">
         <img src="images/featurenet/prototype-feature-data.png" alt="Features Visualizer modal showing Eminem and Lil Wayne songs including No Love, Drop The World and Forever with release years" loading="lazy">
-        <figcaption>The track list behind the Eminem and Lil Wayne connection. Listing the real tracks behind each edge was part of the design from the very first sketch.</figcaption>
+        <figcaption>The track list behind the Eminem and Lil Wayne connection.</figcaption>
       </figure>
     </div>
 
-    <p class="reveal"><strong>2023: First working web build.</strong> I assembled the pieces into a Flask app running locally. Artist photographs replaced the plain circles as nodes, and it was around that point that the product started to feel like something real. Then I set it aside again.</p>
+    <p class="reveal"><strong>2023: First working web build.</strong> I assembled the pieces into a Flask app running locally. Artist photographs replaced the plain circles as nodes, and that's the point where it started to feel like a product. Then I set it aside again.</p>
 
     <div class="image-grid-2 reveal">
       <figure class="project-figure">
         <img src="images/featurenet/react-graph.jpg" alt="2023 build showing Eminem, Lil Wayne and Drake as circular artist photo nodes connected by edges on a dark background" loading="lazy">
-        <figcaption>2023, artist photos replacing plain circles as nodes. Faces are much faster to recognize than names.</figcaption>
+        <figcaption>2023, artist photos replacing plain circles as nodes.</figcaption>
       </figure>
       <figure class="project-figure">
         <img src="images/featurenet/working-prototype.jpg" alt="Local prototype at 127.0.0.1:5000 showing Lil Uzi Vert's collaboration network with artist photo nodes and browser toolbar visible" loading="lazy">
@@ -130,35 +130,37 @@
       </figure>
     </div>
 
-    <p class="reveal"><strong>2026: The current product.</strong> This was a focused rebuild where I put together a structured Flask app, a D3.js front end, nine playlist graphs built offline in advance and served as static JSON, and a lightweight analytics setup so I could see whether anyone actually used it. It's the 2019 concept, executed properly against a live API.</p>
+    <p class="reveal"><strong>2026: The current product.</strong> A focused rebuild: a structured Flask app, a D3.js front end, the nine precomputed graphs, and a lightweight analytics setup so I could see whether anyone used it. It's the 2019 concept, executed properly against a live API.</p>
 
     <h2 class="reveal">The Problem</h2>
-    <p class="reveal">A playlist is just a vertical list, and a list can only ever communicate order. It can't show relationship. Two artists can sit forty rows apart, have made six songs together, and nothing in the interface will ever surface that.</p>
-    <p class="reveal">Every connection in this graph represents actual work. A session, a deadline, a budget, somebody's decision to put two names on one recording. An artist who has accumulated fifteen collaborators over a decade did not do that passively. Rendered as a vertical playlist, all of that accumulated effort is invisible. Rendered as a graph, it looks like what it is.</p>
-    <p class="reveal">That's the argument for this project. The record of who worked with whom already exists as credits on individual tracks, and that data is accurate and complete. It's just structurally invisible, so those questions get answered by memory or a manual discography trawl. Putting the credits into a shape you can actually look at is a way of seeing an industry's collaborative labour that didn't previously exist.</p>
-    <p class="reveal">What got me started was one conversation. A friend who releases music described tracing his own collaborative history by scrolling his discography release by release, one at a time, because there was no other way to do it. That stuck with me and it's why I built this. It's also one conversation, so I'd call it motivation rather than evidence.</p>
+    <p class="reveal">A playlist is a vertical list, and a list can only communicate order. It can't show relationship. Two artists can sit 40 rows apart, have made six songs together, and nothing in the interface will ever surface that.</p>
+    <p class="reveal">Every connection in this graph represents actual work. A session, a deadline, a budget, somebody's decision to put two names on one recording. An artist who has built up 15 collaborators over a decade did not do that passively. Rendered as a vertical playlist, that effort is invisible. Rendered as a graph, it looks like what it is.</p>
+    <p class="reveal">That's the argument for this project. The record of who worked with whom already exists as credits on individual tracks, and that data is accurate and complete. It's just structurally invisible, so the question gets answered by memory or a manual discography trawl. Putting the credits into a shape you can look at is a way of seeing an industry's collaborative labour that didn't previously exist.</p>
+    <p class="reveal">What got me started was one conversation. A friend who releases music described tracing his own collaborative history by scrolling his discography one release at a time, because there was no other way to do it. That's why I built this. It's also one conversation, so I'd call it motivation rather than evidence.</p>
     <p class="reveal">I can imagine this being useful to people who work with catalogues professionally, labels, managers, a music journalist tracing an artist's lineage. But that stayed a hypothesis. I don't have access to that circle and I never tested it with them.</p>
 
     <h2 class="reveal">The Constraints I Had to Work Around</h2>
-    <p class="reveal">Getting from "the collaboration data technically exists" to "someone can open a link and explore it" meant working around some pretty hard platform limits, and each one ended up shaping a design decision.</p>
+    <p class="reveal">Getting from "the collaboration data technically exists" to "someone can open a link and explore it" meant working around hard platform limits. Each one shaped a design decision.</p>
     <ul class="project-list-items reveal">
-      <li><strong>Spotify apps are capped at 5 users in Development Mode.</strong> Lifting that cap isn't realistically available to an individual developer, which I go into under "Why There's No Login Wall" below. My response was to build all nine playlist graphs offline in advance so the product delivers real value without an account.</li>
-      <li><strong>Spotify has no "who has this artist worked with" endpoint.</strong> The core question the product answers can't be asked directly. My response was to derive it instead: walk every track in a playlist, extract all the credited artists, and build edges from shared track credits.</li>
-      <li><strong>Genre data was coarsened</strong> until a diverse playlist collapsed into around three buckets, which made a shipped feature completely useless from an information standpoint. I removed it, and I'll explain that more below.</li>
+      <li><strong>Spotify apps are capped at five users in Development Mode.</strong> My response was to precompute all nine graphs so the product delivers real value without an account. I go into why the cap can't be lifted under "Why There's No Login Wall" below.</li>
+      <li><strong>Spotify has no "who has this artist worked with" endpoint.</strong> The core question the product answers can't be asked directly. My response was to derive it: walk every track in a playlist, extract the credited artists, and build edges from shared track credits.</li>
+      <li><strong>Genre data is only exposed at the artist level, not per track</strong>, so grouping a diverse playlist by artist genre collapsed it into around three buckets and made a shipped feature useless. I removed it, and explain that below.</li>
       <li><strong>Rate limits and batch size caps</strong> on metadata lookups caused naive fetching to fail on larger catalogues. My response was to batch requests, add retry logic with backoff, and cache the results.</li>
     </ul>
     <p class="reveal">The reframe that made everything possible was treating any playlist as the unit of analysis, instead of asking Spotify for a collaboration graph it can't produce. A full discography, a label roster, a whole scene, any of those can be expressed as a playlist and therefore graphed. The limitation became the interface.</p>
 
-    <p class="reveal">One precision worth stating plainly, because a music literate reader will ask about it immediately. Every edge in this graph is a <strong>performing</strong> credit: two artists appearing as credited artists on the same track, either as the primary artist or as a feature. Production and songwriting credits are not in the graph at all. Those are real collaborations, often the ones that shaped a record most, but Spotify's API doesn't expose them, so they can't be derived from this source. A producer with credits across a whole era of records is invisible here unless they also performed on something. That's a genuine limit on what this graph can claim to show, not a detail.</p>
+    <p class="reveal">One precision worth stating plainly. Every connection in this graph is a <strong>performing</strong> credit: two artists credited on the same track, either as the primary artist or as a feature. Production and songwriting credits are not in the graph at all. Those are real collaborations, often the ones that shaped a record most, but Spotify's API doesn't expose them, so they can't be derived from this source. A producer with credits across a whole era of records is invisible here unless they also performed on something. That's a genuine limit on what this graph can claim to show, not a detail.</p>
 
     <h2 class="reveal">How It Compares to What Else Exists</h2>
-    <p class="reveal">The music discovery landscape pretty much splits into two fundamentally different things. Credit data is a fact: these two names appear on this recording. Similarity data is an inference: these two names sound or feel adjacent. The first can't be derived from the second, and that distinction determines whether a product could ever have answered the question this one is asking.</p>
-    <p class="reveal">MusicBrainz and Discogs do hold collaboration data, and MusicBrainz even models it as a first class relationship type. They also hold the production and songwriting credits Spotify doesn't expose, so what they are able to count as a collaboration is genuinely wider than what I can derive. But both present it as hyperlinked text that has to be navigated one hop at a time, opening pages and following links. The data exists. What nobody has done is join that credit data to a visual structure where the shape itself is the information.</p>
-    <p class="reveal">Spotify was the right choice for three practical reasons. First, it returns artist photographs in the same API response as the credit data, which is the only reason using artist photos as nodes works at all. Second, it offers playback, so discovery can end in listening rather than a dead end. Third, batch endpoints can resolve hundreds of artists in just a handful of requests. One of those reasons has since expired. Until February 2026, the Spotify API would return the contents of any public playlist by ID, which is exactly what made the "any playlist becomes the dataset" design possible. Spotify's changelog states that playlists owned by other accounts now return metadata only, not contents. In practice, when I hit the endpoint my app relied on, it came back 403. Either way, the app can't graph someone else's playlist any more. Logged in, you can still graph any playlist sitting in your own library, including a copy of someone else's, and that path works fine. But login is capped at five users, so almost nobody ever reaches it, which is why the nine precomputed graphs are what essentially every visitor actually experiences. The original decision was correct when I made it. The platform changed underneath it.</p>
+    <p class="reveal">The music discovery landscape splits into two kinds of data. Credit data is a fact: these two names appear on this recording. Similarity data is an inference: these two names sound or feel adjacent. The first can't be derived from the second, and that distinction decides whether a product could ever answer the question this one is asking.</p>
+    <p class="reveal">MusicBrainz and Discogs do hold collaboration data, and MusicBrainz models it as a first class relationship type. They also hold the production and songwriting credits Spotify doesn't expose, so what they can count as a collaboration is wider than what I can derive. But both present it as hyperlinked text, navigated one hop at a time. The data exists. What nobody has done is join it to a visual structure where the shape itself is the information.</p>
+    <p class="reveal">Spotify was the right choice for three practical reasons. First, it returns artist photographs in the same API response as the credit data, which is the only reason using artist photos as nodes works at all. Second, it offers playback, so discovery can end in listening rather than a dead end. Third, batch endpoints can resolve hundreds of artists in a handful of requests.</p>
+
+    <p class="reveal">Something else I relied on has since expired. Until February 2026, the Spotify API would return the contents of any public playlist by ID, which made the "any playlist becomes the dataset" design possible. Spotify's changelog states that playlists owned by other accounts now return metadata only, not contents. When I hit the endpoint my app relied on, it came back 403. Either way, the app can't graph someone else's playlist any more. Logged in, you can still graph any playlist in your own library, including a copy of someone else's, and that path works fine. But login is capped at five users, so essentially every visitor sees the precomputed graphs instead. The original decision was correct when I made it. The platform changed underneath it.</p>
 
     <h2 class="reveal">Why There's No Login Wall</h2>
     <p class="reveal">Spotify caps apps in Development Mode at five manually approved users. Lifting that cap requires Extended Quota, which needs a registered business entity and at least 250k monthly active users. Since May 2025 extended access has been reserved for established, scalable services, which in practice rules out an individual developer. A product that required login to start would have been usable by five people on earth. So login couldn't be the front door.</p>
-    <p class="reveal">Nine playlists are built offline in advance by a Python script and published as static JSON. A visitor lands on a 369-artist graph with 527 connections, the EDM Hits default, with no account at all, no redirect and no quota. Login is available for the few who qualify, but it's a bonus rather than a requirement.</p>
+    <p class="reveal">Nine playlists are built offline in advance by a Python script and published as static JSON. A visitor lands on the EDM Hits default, a 369-artist graph with 527 connections, with no account, no redirect and no quota. Login is available for the few who qualify, but it's a bonus rather than a requirement.</p>
 
     <figure class="project-figure reveal">
       <svg class="diagram-svg" viewBox="0 0 300 480" role="img" aria-labelledby="pipeline-title pipeline-desc">
@@ -244,8 +246,8 @@
     </figure>
 
     <h2 class="reveal">Designing the Graph</h2>
-    <p class="reveal">The central visual decision was to use the artist's photograph as the node. Faces are much faster to process than names, which is why the graph feels pretty intuitive almost immediately. Node size encodes song count on the playlist, so the more tracks an artist has on a given playlist, the bigger their node appears. Link thickness encodes shared song count, so a thicker line signals a denser collaboration. A green ring marks the main artist on discography playlists, which gives an anchor point before anything is clicked.</p>
-    <p class="reveal">I chose a dark palette because the graph's content is artist photography, up to 484 simultaneous images on the largest graph, and a dark canvas lets the photos carry the colour while the interface itself recedes. The design system lives as CSS custom properties, and a build script copies the app's real CSS into the published static demo so both front ends share one source and can't drift apart.</p>
+    <p class="reveal">The central visual decision was to use the artist's photograph as the node, because faces are much faster to process than names. Node size encodes song count on the playlist. Connection thickness encodes shared song count, so a thicker line signals a denser collaboration. A green ring marks the main artist on discography playlists, which gives an anchor point before anything is clicked.</p>
+    <p class="reveal">I chose a dark palette because the graph's content is artist photography, up to 484 simultaneous images on the largest graph, and a dark canvas lets the photos carry the colour while the interface recedes. The design system lives as CSS custom properties, and a build script copies the app's real CSS into the published static demo so both front ends share one source and can't drift apart.</p>
 
     <figure class="project-figure reveal">
       <img src="images/featurenet/popified-justin.jpg" alt="Popified Networks showing Justin Bieber selected in the 2010-2015 Billboard Hits network, connections highlighted green, song list panel open with 8 tracks including Baby and Beauty And A Beat" loading="lazy">
@@ -253,15 +255,15 @@
     </figure>
 
     <h2 class="reveal">Accessibility, Honestly</h2>
-    <p class="reveal">I close the MusicSurf case study by naming colour accessibility as that project's main weakness, because an emotional encoding built out of hue only works if everyone can read the hue. Seven years later I shipped a graph where selection state is a green ring and green edges and nothing else. I made a version of the same mistake I had already written down, which is the most useful thing I can say about accessibility here, so I'd rather say it than leave the section out.</p>
+    <p class="reveal">I close the MusicSurf case study by naming colour accessibility as that project's main weakness, because an emotional encoding built out of hue only works if everyone can read the hue. Seven years later I shipped a graph where selection state is a green ring and green connections and nothing else. I made a version of the same mistake I had already written down. That's the most useful thing I can say about accessibility here.</p>
 
-    <p class="reveal">Two things are genuinely right, though I'd be overclaiming if I called them deliberate. Node size encodes song count and link thickness encodes shared song count. Both are non-colour channels, so the two most important quantities in the graph survive even if colour doesn't reach the viewer. I built redundant visual encoding without framing it that way at the time.</p>
+    <p class="reveal">Two things are genuinely right, though I'd be overclaiming if I called them deliberate. Node size and connection thickness are non-colour channels, so the two most important quantities in the graph survive even if colour doesn't reach the viewer. I built redundant visual encoding without framing it that way at the time.</p>
 
     <p class="reveal">The rest is a list of things that are wrong, each with the fix I'd apply:</p>
 
     <ul class="project-list-items reveal">
-      <li><strong>Selection is carried by hue alone.</strong> Clicking an artist draws a green ring and turns their edges green. There is no second channel. The fix is stroke weight on the selected node and its links, or dimming everything unconnected so that selection reads as contrast rather than colour. Either one survives a viewer who can't separate that green from the artwork behind it.</li>
-      <li><strong>A force directed SVG graph is effectively invisible to a screen reader.</strong> I never built a text alternative for it, so the entire product is unusable without sight. The fix is a text alternative generated from the same JSON the graph already loads: a table of artist, collaborators, and the tracks they share. That's cheap, because the data is already sitting there in the right shape, which makes not having built it harder to defend rather than easier.</li>
+      <li><strong>Selection is carried by hue alone.</strong> Clicking an artist draws a green ring and turns their connections green. There is no second channel. The fix is stroke weight on the selected node and its connections, or dimming everything unconnected so that selection reads as contrast rather than colour. Either one survives a viewer who can't separate that green from the artwork behind it.</li>
+      <li><strong>A force directed SVG graph is effectively invisible to a screen reader.</strong> I never built a text alternative for it, so the entire product is unusable without sight. The fix is a text alternative generated from the same JSON the graph already loads: a table of artist, collaborators, and the tracks they share. That's cheap, because the data is already in the right shape, which makes not having built it harder to defend rather than easier.</li>
       <li><strong>There is no keyboard navigation between nodes.</strong> The graph is mouse and touch only. Arrow key traversal between connected artists would suit the structure, and shipping the table view would also solve it by giving keyboard users a complete path through the same data.</li>
       <li><strong>The force simulation animates on load with no <em>prefers-reduced-motion</em> handling.</strong> Nodes fly into position every time a graph opens, and I never wrote the media query that would let a system level setting turn that off.</li>
       <li><strong>Mobile tap targets may be too small.</strong> Node size varies with song count, so the smallest nodes on a dense graph likely fall below the 44 by 44 pixel minimum. I haven't measured it, so I'm flagging it as probable rather than confirmed.</li>
@@ -270,7 +272,7 @@
     <p class="reveal">None of these fixes are implemented. Writing the list is not the same as shipping it, and the distance between identifying this problem in one project and repeating it in the next is the part of this case study I'd most expect to be asked about.</p>
 
     <h2 class="reveal">What the Data Showed</h2>
-    <p class="reveal">This was a smoke test, not a study. I sent the link to friends to confirm the instrumentation was actually recording and to see whether anyone clicked anything without being told to. Over five days it recorded 59 page views, 96 artist clicks, 21 song clicks and 6 Spotify opens.</p>
+    <p class="reveal">This was a smoke test, not a study. I sent the link to friends to confirm the instrumentation was recording and to see whether anyone clicked anything without being told to. Over five days it recorded 59 page views, 96 artist clicks, 21 song clicks and 6 Spotify opens.</p>
     <p class="reveal">That works out to 1.6 artist clicks per page view, 22% of artist clicks leading to a song click, and 29% of song clicks leading to playback.</p>
     <p class="reveal">The limits are worth stating plainly. The sample is tiny, the audience was warm and wanted the project to work, these are event counts rather than unique sessions, and I didn't record a mobile versus desktop split. My first explanation was mobile: a tap landing off screen. My own CSS ruled that out. At phone widths the panel is a bottom sheet pinned over the canvas and the page is locked to viewport height, so it's on screen by design the moment anything is selected. I don't have an explanation for the drop off. Six playback events can't support one. To conclude anything I'd need moderated sessions plus a few hundred unprompted ones from people who don't know me.</p>
 
@@ -281,19 +283,19 @@
       </figure>
       <figure class="project-figure">
         <img src="images/featurenet/popified-mobile-selected.png" alt="Popified Networks on a phone with David Guetta selected in the EDM Hits graph, his connections highlighted green across the upper half of the screen and the detail panel filling the lower half, reading 28.6M followers, 41 collaborators, main artist, above a list of 24 songs beginning with Where Them Girls At, Hey Mama and Sweat that runs past the bottom edge" loading="lazy">
-        <figcaption>David Guetta tapped in the EDM Hits graph. The panel opens as a bottom sheet pinned over the lower portion of the canvas rather than stacking beneath it, and its track list scrolls within the sheet.</figcaption>
+        <figcaption>David Guetta tapped in the EDM Hits graph. The panel opens as a bottom sheet pinned over the canvas rather than stacking beneath it.</figcaption>
       </figure>
     </div>
 
     <h2 class="reveal">Killing a Feature That Worked</h2>
-    <p class="reveal">I wanted to add a genre mode: the same graph, but with nodes clustered by genre instead of by a force directed layout. The problem was that Spotify's genre data kept coming back blank at the track level. The workaround was to pull genre from the artist instead, but that introduced a different issue. Artists pivot. Drake has made house music. Grouping a diverse playlist by artist genre collapsed everything into around three broad buckets, which made the visual completely unreadable and the clustering meaningless. Worth saying that this wasn't a platform change I got caught out by. Spotify's genre data has always been shaped this way, so I wasn't waiting on anything: the limitation was permanent, which is what turned this into a decision rather than a delay.</p>
-    <p class="reveal">I removed it. Based on my competitive analysis, per track genre data does exist elsewhere, MusicBrainz and Discogs both hold it, and getting it from one of those platforms is the path I'd take if I revisited this. The feature isn't impossible. It just can't be built on top of what Spotify exposes today. Removing something that runs but delivers nothing is a harder call than removing something that's broken, and it's probably the decision in this project I'd most want to talk through.</p>
+    <p class="reveal">I wanted to add a genre mode: the same graph, but with nodes clustered by genre instead of by a force directed layout. Spotify's genre data kept coming back blank at the track level. The workaround was to pull genre from the artist instead, which introduced a different problem. Artists pivot. Drake has made house music. Grouping a diverse playlist by artist genre collapsed everything into around three broad buckets, which made the visual unreadable and the clustering meaningless. This wasn't a platform change I got caught out by. Spotify's genre data has always been shaped this way, so the limitation was permanent, which made this a decision rather than a delay.</p>
+    <p class="reveal">I removed it. Based on my competitive analysis, per track genre data does exist elsewhere, MusicBrainz and Discogs both hold it, and getting it from one of those platforms is the path I'd take if I revisited this. The feature isn't impossible. It just can't be built on top of what Spotify exposes today. Removing something that runs but delivers nothing is a harder call than removing something that's broken, and it's the decision in this project I'd most want to talk through.</p>
 
     <h2 class="reveal">Where This Goes</h2>
-    <p class="reveal">The general version of this is where I want to take it. Music was a forgiving first domain precisely because I already knew most of the answers, which is what made it easy to spot when the graph was wrong, and also what makes it a weak test of the idea. Extending this into a general relationship mapping tool, and running it against a domain where the answer isn't already in my head the way music was, is the work I want to do next.</p>
+    <p class="reveal">Music was a forgiving first domain precisely because I already knew most of the answers. That made it easy to spot when the graph was wrong, and it makes music a weak test of the idea. What I want to do next is extend this into a general relationship mapping tool and run it against a domain where the answer isn't already in my head.</p>
     <p class="reveal">Two things I'd change if I started over. I'd run five moderated usability sessions before touching any code, and I'd make it clearer from the first interaction that the connections are clickable, because the most interesting content in the product lives there and nothing in the current UI makes that obvious.</p>
 
-    <p class="reveal">One more thing worth saying plainly. All the behavioural data I have came from 59 page views of people I know. I never spoke to a label, a manager or a music journalist, because I don't have access to that circle yet. Finding out whether people who work with catalogues professionally see what I see in this is the first thing I'd do next.</p>
+    <p class="reveal">One more thing worth saying plainly. All the behavioural data I have came from 59 page views of people I know. Finding out whether people who work with catalogues professionally see what I see in this is the first thing I'd do next.</p>
 
     <h2 class="reveal">References</h2>
     <p class="reveal">Sources for the Spotify platform claims made above. All links verified 25 September 2026.</p>
