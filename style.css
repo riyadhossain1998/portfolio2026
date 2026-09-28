@@ -120,6 +120,16 @@ img { display: block; max-width: 100%; }
    currentColor, so it needs no variants. Because it is a shape it
    satisfies the no-colour-alone rule on its own.
    ============================================ */
+/* The per-page <symbol> sprite is a definition store, not content. It has
+   to stay in the document (a <use href="#id"> cannot reach a display:none
+   subtree in every engine) but must occupy no space. */
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 .ic {
   width: 1em;
   height: 1em;
@@ -184,6 +194,14 @@ img { display: block; max-width: 100%; }
 }
 
 .js .reveal.visible { opacity: 1; }
+
+/* The delay classes are already in the markup of five pages. They stagger
+   siblings that enter together, which is why the steps are small: 240ms is
+   the whole ladder, so the group still reads as one arrival rather than a
+   queue. Neutralised under reduce along with the fade itself. */
+.js .reveal-delay-1 { transition-delay: 80ms; }
+.js .reveal-delay-2 { transition-delay: 160ms; }
+.js .reveal-delay-3 { transition-delay: 240ms; }
 
 /* Hero words: the one focal entrance. A mask reveal, not a fade. */
 .word {
@@ -899,13 +917,6 @@ img { display: block; max-width: 100%; }
   transition: text-decoration-color var(--t-base);
 }
 
-.contact-note {
-  font-family: var(--label);
-  font-size: 0.6875rem;
-  letter-spacing: 0.04em;
-  color: var(--mid);
-}
-
 @media (hover: hover) and (pointer: fine) {
   .contact-link:hover { background: var(--surface); }
   .contact-link:hover .contact-value { text-decoration-color: var(--accent); }
@@ -1083,9 +1094,13 @@ img { display: block; max-width: 100%; }
     opacity: 1;
   }
 
-  .js .reveal {
+  .js .reveal,
+  .js .reveal-delay-1,
+  .js .reveal-delay-2,
+  .js .reveal-delay-3 {
     opacity: 1;
     transition: none;
+    transition-delay: 0s;
   }
 
   .mobile-menu { transition: opacity var(--t-base) linear; }

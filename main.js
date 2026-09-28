@@ -1,55 +1,5 @@
 // ============================================
-// CUSTOM CURSOR
-// ============================================
-function initCursor() {
-  if (window.matchMedia('(max-width: 560px)').matches) return;
-
-  const dot  = document.querySelector('.cursor-dot');
-  const ring = document.querySelector('.cursor-ring');
-  if (!dot || !ring) return;
-
-  let mouseX = 0, mouseY = 0;
-  let ringX = 0, ringY = 0;
-  let isVisible = false;
-
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    if (!isVisible) {
-      dot.style.opacity = '1';
-      ring.style.opacity = '1';
-      isVisible = true;
-    }
-    dot.style.left = mouseX + 'px';
-    dot.style.top  = mouseY + 'px';
-  });
-
-  function animateRing() {
-    ringX += (mouseX - ringX) * 0.12;
-    ringY += (mouseY - ringY) * 0.12;
-    ring.style.left = ringX + 'px';
-    ring.style.top  = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-
-  document.addEventListener('mouseover', e => {
-    if (e.target.closest('a, button, input, textarea')) ring.classList.add('hover');
-  });
-  document.addEventListener('mouseout', e => {
-    if (e.target.closest('a, button, input, textarea')) ring.classList.remove('hover');
-  });
-  document.addEventListener('mousedown', () => ring.classList.add('click'));
-  document.addEventListener('mouseup',   () => ring.classList.remove('click'));
-  document.addEventListener('mouseleave', () => {
-    dot.style.opacity = '0';
-    ring.style.opacity = '0';
-    isVisible = false;
-  });
-}
-
-// ============================================
-// NAV — scroll shrink + mobile toggle
+// NAV — scroll state + mobile toggle
 // ============================================
 function initNav() {
   const nav    = document.querySelector('.nav');
@@ -66,12 +16,14 @@ function initNav() {
     toggle.addEventListener('click', () => {
       const open = menu.classList.toggle('open');
       toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
       document.body.style.overflow = open ? 'hidden' : '';
     });
     menu.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         menu.classList.remove('open');
         toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
     });
@@ -79,7 +31,11 @@ function initNav() {
 }
 
 // ============================================
-// SCROLL REVEAL
+// REVEAL
+// A single opacity step per block, plus one authored entrance for the
+// hero words. Content is visible by default in CSS; the `js` class set
+// in each page head is what arms the hidden state, so a script failure
+// can never hide the page.
 // ============================================
 function initReveal() {
   const observer = new IntersectionObserver(entries => {
@@ -89,105 +45,40 @@ function initReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Trigger hero word animations on load
+  // The hero mask reveal. 120ms to let the first paint settle, then a
+  // 55ms stagger — short enough that the line still reads as one unit.
+  const words = document.querySelectorAll('.hero-title .word-inner');
+  if (!words.length) return;
   setTimeout(() => {
-    document.querySelectorAll('.hero-title .word-inner').forEach((w, i) => {
-      setTimeout(() => w.classList.add('visible'), i * 60);
-    });
-  }, 400);
+    words.forEach((w, i) => setTimeout(() => w.classList.add('visible'), i * 55));
+  }, 120);
 }
 
 // ============================================
-// SMOOTH ANCHOR SCROLL
-// ============================================
-function initSmoothScroll() {
-  document.addEventListener('click', e => {
-    const anchor = e.target.closest('a[href^="#"]');
-    if (!anchor) return;
-    const target = document.querySelector(anchor.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-}
-
-// ============================================
-// MAGNETIC BUTTONS
-// ============================================
-function initMagnetic() {
-  document.querySelectorAll('.magnetic').forEach(btn => {
-    btn.addEventListener('mousemove', e => {
-      const rect = btn.getBoundingClientRect();
-      const dx = (e.clientX - (rect.left + rect.width  / 2)) * 0.25;
-      const dy = (e.clientY - (rect.top  + rect.height / 2)) * 0.25;
-      btn.style.transform = `translate(${dx}px, ${dy}px) translateY(-3px)`;
-    });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = '';
-    });
-  });
-}
-
-// ============================================
-// CONTACT FORM
-// ============================================
-function initContactForm() {
-  const form   = document.getElementById('contact-form');
-  const status = document.getElementById('form-status');
-  if (!form || !status) return;
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const btn  = form.querySelector('.btn-submit');
-    const span = btn.querySelector('span');
-    span.textContent = 'Sending…';
-    btn.disabled = true;
-
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        status.textContent = "Message sent! I'll get back to you soon.";
-        status.className = 'success';
-        form.reset();
-      } else {
-        throw new Error();
-      }
-    } catch {
-      status.textContent = 'Something went wrong. Please try again.';
-      status.className = 'error';
-    }
-
-    span.textContent = 'Send Message';
-    btn.disabled = false;
-  });
-}
-
-// ============================================
-// IMAGE LIGHTBOX MODAL
+// IMAGE LIGHTBOX
 // ============================================
 function initImageModal() {
   const figures = document.querySelectorAll('.project-figure img');
   if (!figures.length) return;
 
-  // Build modal DOM once
   const modal = document.createElement('div');
   modal.className = 'img-modal';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('aria-hidden', 'true');
   modal.innerHTML = `
     <div class="img-modal-backdrop"></div>
     <div class="img-modal-content">
       <img src="" alt="">
       <span class="img-modal-caption"></span>
     </div>
-    <button class="img-modal-close" aria-label="Close image">&#x2715;</button>
+    <button class="img-modal-close" type="button" aria-label="Close image">
+      <svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+    </button>
   `;
   document.body.appendChild(modal);
 
@@ -196,30 +87,46 @@ function initImageModal() {
   const backdrop     = modal.querySelector('.img-modal-backdrop');
   const closeBtn     = modal.querySelector('.img-modal-close');
 
+  let lastFocused = null;
+
   function openModal(src, alt, caption) {
+    lastFocused = document.activeElement;
     modalImg.src = src;
     modalImg.alt = alt;
     modalCaption.textContent = caption || '';
     modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    closeBtn.focus();
   }
 
   function closeModal() {
+    if (!modal.classList.contains('open')) return;
     modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
   }
 
   figures.forEach(img => {
     img.addEventListener('click', () => {
       const caption = img.closest('figure')?.querySelector('figcaption')?.textContent || '';
-      openModal(img.src, img.alt, caption);
+      openModal(img.currentSrc || img.src, img.alt, caption);
     });
   });
 
   backdrop.addEventListener('click', closeModal);
   closeBtn.addEventListener('click', closeModal);
+
+  // Close on Escape, and hold focus on the only control the dialog has
+  // so Tab cannot walk out into the page behind it.
   document.addEventListener('keydown', e => {
+    if (!modal.classList.contains('open')) return;
     if (e.key === 'Escape') closeModal();
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      closeBtn.focus();
+    }
   });
 }
 
@@ -227,11 +134,7 @@ function initImageModal() {
 // INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-  initCursor();
   initNav();
   initReveal();
-  initSmoothScroll();
-  initMagnetic();
-  initContactForm();
   initImageModal();
 });

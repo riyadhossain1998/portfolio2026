@@ -4,31 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Riyad Hossain | UX Designer & Client Success Specialist</title>
+  <meta name="theme-color" content="#A7C8EA">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400..500&family=Gochi+Hand&family=Piazzolla:ital,opsz,wght@0,8..30,400..600;1,8..30,400..600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.className = 'js';</script>
 </head>
 <body>
 
-  <!-- Custom Cursor -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-
-  <!-- Grain overlay -->
-  <div class="grain" aria-hidden="true"></div>
+  <!-- =============================================
+       MARKER SPRITE
+       Two nodes and an edge: the thesis of the work at 1em. Used for
+       the wordmark, the current page indicator and section markers.
+       ============================================= -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="m-node" viewBox="0 0 16 16">
+      <path d="M5.3 6.2 10.7 9.8"/>
+      <circle cx="3.7" cy="4.9" r="2.5"/>
+      <circle cx="12.3" cy="11.1" r="2.5"/>
+    </symbol>
+  </svg>
 
   <!-- =============================================
        NAV
        ============================================= -->
   <nav class="nav" id="nav">
-    <a href="/" class="nav-logo">RH</a>
+    <a href="/" class="nav-logo"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>RH</a>
     <div class="nav-links">
       <a href="#work">Work</a>
       <a href="about.html">About</a>
       <a href="#contact">Contact</a>
     </div>
-    <button class="nav-menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+    <button class="nav-menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span>
     </button>
   </nav>
@@ -47,7 +55,7 @@
        ============================================= -->
   <header class="hero" id="hero">
     <div class="hero-inner">
-      <p class="hero-eyebrow">UX Designer & Client Success Specialist</p>
+      <p class="hero-eyebrow"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>UX Designer &amp; Client Success Specialist</p>
       <h1 class="hero-title">
         <div><span class="word"><span class="word-inner">I</span></span>&nbsp;<span class="word"><span class="word-inner">design</span></span>&nbsp;<span class="word"><span class="word-inner">products</span></span>&nbsp;<span class="word"><span class="word-inner">and</span></span></div>
         <div><span class="word"><span class="word-inner">I</span></span>&nbsp;<span class="word"><span class="word-inner">help</span></span>&nbsp;<span class="word"><span class="word-inner">people</span></span>&nbsp;<span class="word"><span class="word-inner">actually</span></span></div>
@@ -55,8 +63,8 @@
       </h1>
       <p class="hero-sub">I spent over two years as a Client Success Specialist at ActiveDEMAND, onboarding clients, working Tier 2 tickets and building landing pages, emails and workflows. As a result, I design with the people on the other end of the screen in mind, and I build a lot of what I design too.</p>
       <div class="hero-cta">
-        <a href="#work" class="btn btn-primary magnetic">View My Work</a>
-        <a href="about.html" class="btn btn-ghost magnetic">About Me</a>
+        <a href="#work" class="btn btn-primary">View My Work</a>
+        <a href="about.html" class="btn btn-ghost">About Me</a>
       </div>
     </div>
     <div class="hero-scroll-hint">
@@ -65,61 +73,45 @@
   </header>
 
   <!-- =============================================
-       MARQUEE
-       ============================================= -->
-  <div class="marquee-wrap" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item">UX Design</span>
-      <span class="marquee-item">UX Research</span>
-      <span class="marquee-item">Interaction Design</span>
-      <span class="marquee-item">Marketing Strategy</span>
-      <span class="marquee-item">Brand Identity</span>
-      <span class="marquee-item">Prototyping</span>
-      <span class="marquee-item">Design Systems</span>
-      <span class="marquee-item">Marketing Automation</span>
-      <span class="marquee-item">Client Onboarding</span>
-      <span class="marquee-item">Technical Support</span>
-      <span class="marquee-item">Support Documentation</span>
-      <span class="marquee-item">User Interviews</span>
-      <span class="marquee-item">Adobe XD</span>
-      <span class="marquee-item">Figma</span>
-      <span class="marquee-item">Content Strategy</span>
-      <!-- Duplicate for seamless loop -->
-      <span class="marquee-item">UX Design</span>
-      <span class="marquee-item">UX Research</span>
-      <span class="marquee-item">Interaction Design</span>
-      <span class="marquee-item">Marketing Strategy</span>
-      <span class="marquee-item">Brand Identity</span>
-      <span class="marquee-item">Prototyping</span>
-      <span class="marquee-item">Design Systems</span>
-      <span class="marquee-item">Marketing Automation</span>
-      <span class="marquee-item">Client Onboarding</span>
-      <span class="marquee-item">Technical Support</span>
-      <span class="marquee-item">Support Documentation</span>
-      <span class="marquee-item">User Interviews</span>
-      <span class="marquee-item">Adobe XD</span>
-      <span class="marquee-item">Figma</span>
-      <span class="marquee-item">Content Strategy</span>
-    </div>
-  </div>
-
-  <!-- =============================================
        WORK / CASE STUDIES
        ============================================= -->
   <section id="work" class="work">
     <div class="section-header reveal">
-      <span class="section-label">Selected Work</span>
       <h2 class="section-title">Case Studies</h2>
+      <span class="section-label"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>Selected Work</span>
     </div>
 
     <div class="project-list">
 
-      <!-- Project 01 -->
+      <!-- Project 01 — a hub with eight collaborators, edge weight
+           standing in for shared songs. This is the product. -->
       <a href="project4.html" class="project-item reveal">
         <div class="project-image">
-          <div class="project-placeholder" style="background: linear-gradient(135deg, #0a0a0a 0%, #0d1a0d 50%, #121212 100%);">
-            <span>01</span>
-          </div>
+          <svg class="project-thumb" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+            <g class="t-edge">
+              <path d="M200 150 84 74" stroke-width="3.5"/>
+              <path d="M200 150 322 68" stroke-width="2"/>
+              <path d="M200 150 62 192" stroke-width="1.25"/>
+              <path d="M200 150 340 182" stroke-width="4.5"/>
+              <path d="M200 150 152 252" stroke-width="2.5"/>
+              <path d="M200 150 278 254" stroke-width="1.25"/>
+              <path d="M200 150 44 126" stroke-width="1.75"/>
+              <path d="M200 150 356 114" stroke-width="3"/>
+              <path d="M322 68 356 114" stroke-width="1.25"/>
+              <path d="M62 192 152 252" stroke-width="1.25"/>
+            </g>
+            <circle class="t-node" cx="84" cy="74" r="13"/>
+            <circle class="t-node" cx="322" cy="68" r="10"/>
+            <circle class="t-node" cx="62" cy="192" r="8"/>
+            <circle class="t-node" cx="340" cy="182" r="15"/>
+            <circle class="t-node" cx="152" cy="252" r="11"/>
+            <circle class="t-node" cx="278" cy="254" r="8"/>
+            <circle class="t-node" cx="44" cy="126" r="9"/>
+            <circle class="t-node" cx="356" cy="114" r="12"/>
+            <circle class="t-ring" cx="200" cy="150" r="30"/>
+            <circle class="t-node-accent" cx="200" cy="150" r="21"/>
+            <text class="t-num" x="22" y="278">01</text>
+          </svg>
         </div>
         <div class="project-info">
           <span class="project-number">01</span>
@@ -136,12 +128,31 @@
         </div>
       </a>
 
-      <!-- Project 02 -->
+      <!-- Project 02 — a wandering path rather than a hub, because
+           MusicSurf was about following a route by feel. -->
       <a href="project1.html" class="project-item reveal">
         <div class="project-image">
-          <div class="project-placeholder" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
-            <span>02</span>
-          </div>
+          <svg class="project-thumb" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+            <g class="t-edge">
+              <path d="M58 226 128 148" stroke-width="2"/>
+              <path d="M128 148 208 194" stroke-width="3"/>
+              <path d="M208 194 286 104" stroke-width="2"/>
+              <path d="M286 104 352 168" stroke-width="1.5"/>
+              <path d="M128 148 106 68" stroke-width="1.25"/>
+              <path d="M286 104 316 44" stroke-width="1.25"/>
+              <path d="M208 194 232 266" stroke-width="1.25"/>
+            </g>
+            <circle class="t-node" cx="58" cy="226" r="9"/>
+            <circle class="t-node" cx="128" cy="148" r="12"/>
+            <circle class="t-node" cx="286" cy="104" r="11"/>
+            <circle class="t-node" cx="352" cy="168" r="9"/>
+            <circle class="t-node" cx="106" cy="68" r="7"/>
+            <circle class="t-node" cx="316" cy="44" r="7"/>
+            <circle class="t-node" cx="232" cy="266" r="7"/>
+            <circle class="t-ring" cx="208" cy="194" r="32"/>
+            <circle class="t-node-accent" cx="208" cy="194" r="15"/>
+            <text class="t-num" x="22" y="278">02</text>
+          </svg>
         </div>
         <div class="project-info">
           <span class="project-number">02</span>
@@ -158,12 +169,35 @@
         </div>
       </a>
 
-      <!-- Project 03 -->
+      <!-- Project 03 — a fulfilment pipeline: three stages left to
+           right, items hanging off each one, current stage marked. -->
       <a href="project2.html" class="project-item reveal">
         <div class="project-image">
-          <div class="project-placeholder" style="background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);">
-            <span>03</span>
-          </div>
+          <svg class="project-thumb" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+            <g class="t-edge">
+              <path d="M76 150 188 150" stroke-width="3"/>
+              <path d="M188 150 300 150" stroke-width="3"/>
+              <path d="M300 150 358 150" stroke-width="1.5"/>
+              <path d="M76 150 46 96" stroke-width="1.25"/>
+              <path d="M76 150 46 204" stroke-width="1.25"/>
+              <path d="M188 150 170 74" stroke-width="1.25"/>
+              <path d="M188 150 206 226" stroke-width="1.25"/>
+              <path d="M300 150 318 86" stroke-width="1.25"/>
+              <path d="M300 150 326 212" stroke-width="1.25"/>
+            </g>
+            <circle class="t-node" cx="46" cy="96" r="7"/>
+            <circle class="t-node" cx="46" cy="204" r="7"/>
+            <circle class="t-node" cx="170" cy="74" r="7"/>
+            <circle class="t-node" cx="206" cy="226" r="7"/>
+            <circle class="t-node" cx="318" cy="86" r="7"/>
+            <circle class="t-node" cx="326" cy="212" r="7"/>
+            <circle class="t-node" cx="76" cy="150" r="14"/>
+            <circle class="t-node" cx="358" cy="150" r="10"/>
+            <circle class="t-ring" cx="188" cy="150" r="29"/>
+            <circle class="t-node-accent" cx="188" cy="150" r="17"/>
+            <circle class="t-node" cx="300" cy="150" r="14"/>
+            <text class="t-num" x="22" y="278">03</text>
+          </svg>
         </div>
         <div class="project-info">
           <span class="project-number">03</span>
@@ -180,12 +214,26 @@
         </div>
       </a>
 
-      <!-- Project 04 -->
+      <!-- Project 04 — one node emitting, one node receiving. A hum
+           crossing the gap, drawn as expanding arcs. -->
       <a href="project3.html" class="project-item reveal">
         <div class="project-image">
-          <div class="project-placeholder" style="background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);">
-            <span>04</span>
-          </div>
+          <svg class="project-thumb" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+            <g class="t-ring">
+              <path d="M138 106a58 58 0 0 1 0 88"/>
+              <path d="M152 78a92 92 0 0 1 0 144"/>
+              <path d="M166 50a126 126 0 0 1 0 200"/>
+            </g>
+            <g class="t-edge">
+              <path d="M104 150 60 150" stroke-width="1.5"/>
+              <path d="M330 150 366 150" stroke-width="1.5"/>
+            </g>
+            <circle class="t-node" cx="60" cy="150" r="8"/>
+            <circle class="t-node" cx="366" cy="150" r="8"/>
+            <circle class="t-node-accent" cx="122" cy="150" r="19"/>
+            <circle class="t-node" cx="312" cy="150" r="19"/>
+            <text class="t-num" x="22" y="278">04</text>
+          </svg>
         </div>
         <div class="project-info">
           <span class="project-number">04</span>
@@ -214,45 +262,46 @@
         <img src="images/intro/IMG_0173.jpg" alt="Riyad Hossain" loading="lazy">
       </div>
       <div class="about-teaser-content">
-        <span class="section-label">A Little About Me</span>
         <h2 class="section-title">Communication meets creativity.</h2>
-        <p>I completed my Bachelor of Arts in Communication & Culture at the University of Calgary at the end of Fall 2022, with specializations in Computer Science and Visual Studies. My time at ActiveDEMAND, a marketing automation platform, ran from May 2024 to July 2026, and on the side I've taken on freelance UX, web and graphic design work.</p>
-        <a href="about.html" class="btn btn-primary" style="margin-top: 32px;">More About Me</a>
+        <span class="section-label"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>A Little About Me</span>
+        <p>I completed my Bachelor of Arts in Communication &amp; Culture at the University of Calgary at the end of Fall 2022, with specializations in Computer Science and Visual Studies. My time at ActiveDEMAND, a marketing automation platform, ran from May 2024 to July 2026, and on the side I've taken on freelance UX, web and graphic design work.</p>
+        <a href="about.html" class="btn btn-primary">More About Me</a>
       </div>
     </div>
   </section>
 
   <!-- =============================================
-       CONTACT
+       CONTACT — three real destinations. The form that used to sit
+       here posted to a placeholder endpoint and returned an error to
+       every visitor who tried it.
        ============================================= -->
   <section id="contact" class="contact">
     <div class="contact-inner">
       <div class="contact-header reveal">
-        <span class="section-label">Get In Touch</span>
         <h2 class="section-title">Let's work together.</h2>
-        <p class="contact-sub">Have a project in mind or just want to say hello? I'd love to hear from you.</p>
+        <p class="contact-sub">Email is the surest way to reach me. I'm also on LinkedIn and GitHub.</p>
+        <span class="section-label"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>Get In Touch</span>
       </div>
-      <form id="contact-form" class="contact-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell me about your project..." rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-submit">
-          <span>Send Message</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <p id="form-status"></p>
-      </form>
+      <ul class="contact-list reveal">
+        <li>
+          <a class="contact-link" href="mailto:riyadhossain112357@gmail.com">
+            <span class="contact-key"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>Email</span>
+            <span class="contact-value">riyadhossain112357@gmail.com</span>
+          </a>
+        </li>
+        <li>
+          <a class="contact-link" href="https://www.linkedin.com/in/riyad-hossain-30773914b" target="_blank" rel="noopener">
+            <span class="contact-key"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>LinkedIn</span>
+            <span class="contact-value">linkedin.com/in/riyad-hossain-30773914b</span>
+          </a>
+        </li>
+        <li>
+          <a class="contact-link" href="https://github.com/riyadhossain1998" target="_blank" rel="noopener">
+            <span class="contact-key"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>GitHub</span>
+            <span class="contact-value">github.com/riyadhossain1998</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -263,7 +312,7 @@
     <div class="footer-inner">
       <span class="footer-logo">Riyad Hossain</span>
       <nav class="footer-links">
-        <a href="mailto:riyad.hossain114@gmail.com">Email</a>
+        <a href="mailto:riyadhossain112357@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/riyad-hossain-30773914b" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com/riyadhossain1998" target="_blank" rel="noopener">GitHub</a>
       </nav>
