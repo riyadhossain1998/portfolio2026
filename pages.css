@@ -1,204 +1,720 @@
 /* ============================================
-   SHARED PAGE STYLES (About + Project pages)
+   SIGNAL — page styles (project case studies + about)
+
+   Two modes live in this file.
+
+   READ (project1–4): the visitor is here to understand 900–3,500
+   words. The reading column is a literal sheet on --surface, set in
+   Piazzolla at 18px with a measure capped near 66ch, hung off a
+   drawn node-and-edge spine so the section structure is visible in
+   the left margin without numbering anything.
+
+   PERSUADE (about): the visitor is deciding whether to keep reading.
+   Same palette, wider grid, more contrast between blocks.
+
+   Contrast, measured, WCAG 2 relative luminance:
+     on --surface  #DDEBFB : ink 13.93 · body 10.49 · mid 8.25 · meta 6.64 · rule 4.96 · accent 7.13
+     on --sunk     #CEDEF0 : ink 12.31 · body  9.27 · mid 7.29 · meta 5.87 · rule 4.38
+     on --canvas   #A7C8EA : ink  9.71 · body  7.31 · mid 5.75 · meta 4.63 · accent 4.97
+   --rule is non-text only. --meta is the lightest text used anywhere.
    ============================================ */
 
-/* Page Hero */
+/* ============================================
+   PAGE HERO — left aligned. Nothing on this site is centred
+   text, because a centred block gives the eye no fixed return edge.
+   ============================================ */
 .page-hero {
-  padding: 160px 48px 80px;
-  text-align: center;
+  padding: 152px 56px 56px;
 }
 
 .page-hero-inner {
-  max-width: 720px;
+  max-width: 1160px;
   margin: 0 auto;
 }
 
 .page-hero-title {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-family: var(--read);
+  font-variation-settings: 'opsz' 30;
+  font-size: clamp(2.35rem, 5.4vw, 4rem);
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.024em;
+  color: var(--ink);
+  max-width: 24ch;
+  text-wrap: balance;
 }
 
+/* The standfirst. opsz 22 because at 21px Piazzolla's display cut is
+   still too tight and its text cut too loose. */
 .page-hero-subtitle {
-  font-size: 1.1rem;
-  color: var(--text-light);
-  font-weight: 300;
-  line-height: 1.7;
-  margin-top: 20px;
-  max-width: 560px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ============================================
-   ABOUT PAGE
-   ============================================ */
-.about-content {
-  padding: 40px 48px 120px;
-}
-
-.about-grid {
-  max-width: 960px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 64px;
-  align-items: start;
-}
-
-.about-photo-frame {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--bg-alt);
-  border: 2px solid var(--border);
-}
-
-.about-photo-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.about-text h2 {
-  font-family: var(--serif);
-  font-size: 1.75rem;
+  font-variation-settings: 'opsz' 22;
+  font-size: 1.3rem;
   font-weight: 400;
-  margin-bottom: 24px;
+  line-height: 1.52;
+  color: var(--mid);
+  max-width: 48ch;
+  margin-top: 22px;
 }
 
-.about-text p {
-  font-size: 1rem;
-  color: var(--text-light);
-  line-height: 1.85;
-  font-weight: 300;
-  margin-bottom: 20px;
-}
-
-.about-text p:last-child {
-  margin-bottom: 0;
-}
-
-/* Skills */
-.about-skills {
-  padding: 120px 48px;
-  background: var(--bg-alt);
-}
-
-.about-skills-inner {
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.about-skills .section-header {
-  text-align: left;
-  margin-bottom: 48px;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-}
-
-.skill-group h3 {
-  font-family: var(--serif);
-  font-size: 1.1rem;
-  font-weight: 400;
-  margin-bottom: 16px;
-}
-
-.skill-group ul {
-  list-style: none;
-}
-
-.skill-group li {
-  font-size: 0.9rem;
-  color: var(--text-light);
-  padding: 6px 0;
-  border-bottom: 1px solid var(--border);
-  font-weight: 300;
-}
-
-.skill-group li:last-child {
+/* On a project page the "Case Study 01" line sits BELOW the title and
+   opens the spec block, where it reads as a document reference. As a
+   centred line above the heading it was a kicker, which the craft
+   floor bans outright. */
+.page-hero .hero-eyebrow {
   border-bottom: none;
-}
-
-/* CTA */
-.about-cta {
-  padding: 120px 48px;
-}
-
-.about-cta-inner {
-  max-width: 640px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about-cta-inner p {
-  color: var(--text-light);
-  font-weight: 300;
-  margin-top: 16px;
-  font-size: 1.05rem;
+  border-top: 1px solid var(--rule);
+  padding-bottom: 0;
+  padding-top: 15px;
+  margin-top: 40px;
+  margin-bottom: 0;
+  max-width: none;
 }
 
 /* ============================================
-   ABOUT PAGE — DYNAMIC LAYOUT
+   PROJECT SPEC BLOCK
+   Role, timeline, context, tools. A keyed list, mono keys and serif
+   values, sitting on the rule the reference line opened.
    ============================================ */
+.project-hero-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 26px 40px;
+  margin-top: 26px;
+}
 
-/* Intro */
+.project-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-meta-label {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--meta);
+}
+
+.project-meta-value {
+  font-family: var(--read);
+  font-variation-settings: 'opsz' 14;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--ink);
+  max-width: 30ch;
+}
+
+/* ============================================
+   COVER
+   ============================================ */
+.project-cover {
+  padding: 48px 56px 0;
+  margin-bottom: 64px;
+}
+
+.project-cover-image {
+  max-width: 1160px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--surface-sunk);
+  overflow: hidden;
+}
+
+/* ============================================
+   THE READING SHEET
+   A surface panel, not a bare column. The left rail carries the
+   spine; prose is capped at 36em (~66ch at 18px) inside it.
+   ============================================ */
+.project-body {
+  max-width: 800px;
+  margin: 0 auto 96px;
+  padding: 56px 40px 64px 92px;
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font-variation-settings: 'opsz' 12;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--body);
+}
+
+/* The spine. One drawn edge running the length of the argument, with
+   a node at every section — the same figure as the site marker, at
+   page scale. Decorative, so it is drawn in CSS and never announced. */
+.project-body::before {
+  content: '';
+  position: absolute;
+  left: 48px;
+  top: 64px;
+  bottom: 64px;
+  width: 1px;
+  background: var(--rule-soft);
+}
+
+.project-body h2 {
+  font-family: var(--read);
+  font-variation-settings: 'opsz' 26;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.014em;
+  color: var(--ink);
+  margin: 56px 0 18px;
+  max-width: 32ch;
+  position: relative;
+  text-wrap: balance;
+}
+
+.project-body h2:first-child { margin-top: 0; }
+
+/* The section node, centred on the spine. The spine's centre sits at
+   48.5px from the padding box; the h2 starts at 92px; the node box is
+   9px, so its left edge lands at 44px, i.e. -48px from the h2. */
+.project-body h2::before {
+  content: '';
+  position: absolute;
+  left: -48px;
+  top: 0.58em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1.5px solid var(--accent);
+}
+
+.project-body p {
+  max-width: 36em;
+  margin-bottom: 18px;
+}
+
+.project-body p:last-child { margin-bottom: 0; }
+
+.project-body strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.project-body em { font-style: italic; }
+
+/* Inline links in prose carry an underline, so the link is never
+   signalled by colour alone. */
+.project-body p a,
+.project-body li a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.17em;
+  text-decoration-thickness: 1px;
+  word-break: break-word;
+  transition: text-decoration-color var(--t-base), color var(--t-base);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-body p a:hover,
+  .project-body li a:hover {
+    color: var(--ink);
+    text-decoration-color: var(--ink);
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* ============================================
+   LISTS
+   The marker is the node-and-edge figure at list scale: a hairline
+   edge running out of the margin into a hollow node. It replaces the
+   em dash, which was a text glyph standing in for an icon.
+   ============================================ */
+.project-list-items {
+  list-style: none;
+  max-width: 36em;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.project-list-items li {
+  padding-left: 32px;
+  position: relative;
+}
+
+.project-list-items li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.82em;
+  width: 13px;
+  height: 1px;
+  background: var(--rule);
+}
+
+.project-list-items li::after {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: calc(0.82em - 4px);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1.5px solid var(--accent);
+}
+
+/* ============================================
+   DATA TABLE
+   Nine playlists, two measured quantities. Mono with tabular figures
+   so the columns line up digit for digit; the row label stays in the
+   reading face because it is a name, not data.
+   ============================================ */
+.data-table-wrap {
+  max-width: 36em;
+  margin: 10px 0 22px;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  color: var(--body);
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 11px 16px 11px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.data-table td {
+  text-align: right;
+  font-family: var(--label);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  padding-right: 0;
+  color: var(--body);
+}
+
+.data-table thead th {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--meta);
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.data-table thead th + th {
+  text-align: right;
+  padding-right: 0;
+}
+
+.data-table tbody th {
+  font-family: var(--read);
+  font-variation-settings: 'opsz' 14;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* The total row is set apart by a heavier rule and a weight step,
+   not by a fill. */
+.data-table tfoot th,
+.data-table tfoot td {
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom: none;
+  border-top: 1.5px solid var(--rule);
+  padding-top: 13px;
+}
+
+.data-table-note {
+  font-family: var(--label);
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--meta);
+  margin-left: 9px;
+  padding: 2px 7px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+/* ============================================
+   FIGURES
+   Images sit in a sunk well so the frame reads as a mount rather
+   than a border drawn on the reading surface.
+   ============================================ */
+.image-grid-2,
+.image-grid-3 {
+  display: grid;
+  gap: 18px;
+  margin: 12px 0 34px;
+}
+
+.image-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.image-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.project-figure {
+  margin: 0 0 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.image-grid-2 .project-figure,
+.image-grid-3 .project-figure { margin-bottom: 0; }
+
+.project-figure img {
+  width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  display: block;
+  background: var(--surface-sunk);
+  cursor: zoom-in;
+  transition: box-shadow var(--t-base) var(--ease-out),
+              border-color var(--t-base);
+}
+
+/* Hover thickens the frame. It does not scale the image and it does
+   not put a shadow under it: the affordance is stroke weight, which
+   survives greyscale and costs no reflow. */
+@media (hover: hover) and (pointer: fine) {
+  .project-figure img:hover {
+    border-color: var(--ink);
+    box-shadow: 0 0 0 2px var(--ink);
+  }
+}
+
+.project-figure figcaption {
+  font-family: var(--label);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--meta);
+  max-width: 44em;
+}
+
+/* ============================================
+   INLINE PIPELINE DIAGRAM (project4)
+   Was styled entirely through --sans / --text / --text-light /
+   --bg-alt / --border, none of which exist any more. Remapped:
+     --sans       -> --label   (a diagram label is data, not prose)
+     --text       -> --ink     12.31 on the sunk well
+     --text-light -> --mid      7.29 on the sunk well
+     --bg-alt     -> --surface  boxes read as raised off the well
+     --border     -> --rule     4.38 on the well, non-text
+   ============================================ */
+.diagram-svg {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.diagram-svg text {
+  font-family: var(--label);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.diagram-svg .d-label { fill: var(--ink); }
+
+.diagram-svg .d-sub {
+  fill: var(--mid);
+  font-size: 11px;
+}
+
+.diagram-svg .d-box {
+  fill: var(--surface);
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+
+.diagram-svg .d-branch {
+  fill: none;
+  stroke: var(--rule);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+
+.diagram-svg .d-line {
+  stroke: var(--mid);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.diagram-svg .d-dash {
+  stroke: var(--mid);
+  stroke-width: 1.25;
+  fill: none;
+  stroke-dasharray: 4 3;
+}
+
+.diagram-svg .d-head { fill: var(--mid); }
+
+/* The diagram is a drawing, not a photograph, so it gets the well
+   directly rather than an image frame. */
+.project-figure:has(.diagram-svg) {
+  background: var(--surface-sunk);
+  border: 1px solid var(--rule-soft);
+  border-radius: 4px;
+  padding: 28px 24px 22px;
+}
+
+.project-figure:has(.diagram-svg) figcaption {
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-soft);
+}
+
+/* ============================================
+   LINKS OUT
+   ============================================ */
+.project-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 48px;
+  padding-top: 34px;
+  border-top: 1px solid var(--rule);
+}
+
+/* ============================================
+   IMAGE LIGHTBOX
+   The one dark surface on the site. It is dark because the content
+   is a screenshot and a bright frame around a bright screenshot
+   gives the eye no edge to stop at.
+   ============================================ */
+.img-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-slow) var(--ease-out);
+}
+
+.img-modal.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.img-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in oklab, var(--ink) 93%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@supports not (background: color-mix(in oklab, red, blue)) {
+  .img-modal-backdrop { background: var(--ink); }
+}
+
+.img-modal-content {
+  position: relative;
+  z-index: 1;
+  max-width: min(92vw, 1160px);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--t-slow) var(--ease-out),
+              transform var(--t-slow) var(--ease-out);
+}
+
+.img-modal.open .img-modal-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.img-modal-content img {
+  max-width: 100%;
+  max-height: calc(92vh - 64px);
+  border-radius: 3px;
+  display: block;
+  border: 1px solid var(--rule);
+  object-fit: contain;
+  cursor: default;
+}
+
+/* --canvas on the composited backdrop measures 6.03:1. */
+.img-modal-caption {
+  font-family: var(--label);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--canvas);
+  text-align: center;
+  max-width: 62ch;
+}
+
+/* A solid chip, so its contrast is a number rather than whatever the
+   image behind it happens to be. --ink on --surface is 13.93. */
+.img-modal-close {
+  position: fixed;
+  top: 22px;
+  right: 26px;
+  z-index: 2;
+  background: var(--surface);
+  border: 1.5px solid var(--rule);
+  color: var(--ink);
+  width: 44px;
+  height: 44px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--t-base),
+              border-color var(--t-base),
+              transform var(--t-fast) var(--ease-out);
+}
+
+.img-modal-close .ic {
+  width: 17px;
+  height: 17px;
+  stroke-width: 1.75;
+}
+
+.img-modal-close:active { transform: scale(0.94); }
+
+@media (hover: hover) and (pointer: fine) {
+  .img-modal-close:hover {
+    background: var(--canvas-up);
+    border-color: var(--ink);
+  }
+}
+
+/* ============================================
+   PROJECT NAV
+   ============================================ */
+.project-nav {
+  border-top: 1px solid var(--rule);
+  padding: 44px 56px;
+}
+
+.project-nav-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 32px;
+}
+
+.project-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--read);
+  font-variation-settings: 'opsz' 16;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ink);
+  max-width: 26ch;
+  transition: color var(--t-base);
+}
+
+.project-nav a svg { flex: none; color: var(--accent); }
+
+.project-nav .next-label,
+.project-nav .prev-label {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--meta);
+  display: block;
+  margin-bottom: 7px;
+}
+
+.project-nav .nav-next { text-align: right; }
+
+.project-nav a svg { transition: transform var(--t-base) var(--ease-out); }
+
+@media (hover: hover) and (pointer: fine) {
+  .project-nav a:hover { color: var(--accent); }
+  .project-nav .nav-next:hover svg { transform: translateX(3px); }
+  .project-nav a:not(.nav-next):hover svg { transform: translateX(-3px); }
+}
+
+/* ============================================
+   ABOUT — PERSUADE
+   ============================================ */
 .about-intro {
-  padding: 0 48px 96px;
+  padding: 8px 56px 88px;
 }
 
 .about-intro-inner {
-  max-width: 960px;
+  max-width: 1160px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 240px;
-  gap: 64px;
+  grid-template-columns: minmax(0, 1fr) 270px;
+  gap: 72px;
   align-items: start;
 }
 
 .about-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-lighter);
+  font-family: var(--label);
+  font-size: 0.6875rem;
   font-weight: 500;
-  margin-bottom: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--meta);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--rule);
 }
 
 .about-intro-text h2 {
-  font-family: var(--serif);
+  font-family: var(--read);
+  font-variation-settings: 'opsz' 30;
   font-size: clamp(1.8rem, 3vw, 2.4rem);
-  font-weight: 400;
-  margin-bottom: 20px;
+  font-weight: 600;
+  line-height: 1.12;
   letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 18px;
 }
 
 .about-intro-text p {
-  font-size: 1rem;
-  color: var(--text-light);
-  line-height: 1.85;
-  font-weight: 300;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--body);
+  max-width: 62ch;
   margin-bottom: 16px;
 }
 
-.about-intro-text p:last-child {
-  margin-bottom: 0;
-}
+.about-intro-text p:last-child { margin-bottom: 0; }
 
 .about-intro-photo {
-  width: 240px;
-  height: 300px;
-  border-radius: 14px;
+  width: 270px;
+  height: 338px;
+  border-radius: 4px;
   overflow: hidden;
-  border: 1px solid var(--border);
-  flex-shrink: 0;
+  border: 1px solid var(--rule);
+  background: var(--surface-sunk);
 }
 
 .about-intro-photo img {
@@ -210,667 +726,352 @@
 
 /* Split sections */
 .about-dynamic {
-  padding: 0 48px 96px;
+  padding: 0 56px 88px;
 }
 
 .about-split {
-  max-width: 960px;
+  max-width: 1160px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
   gap: 72px;
   align-items: start;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
 }
 
 .about-split-heading {
-  font-family: var(--serif);
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 400;
-  line-height: 1.05;
-  margin-bottom: 24px;
-  letter-spacing: -0.025em;
+  font-family: var(--read);
+  font-variation-settings: 'opsz' 30;
+  font-size: clamp(2.1rem, 3.8vw, 3rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.026em;
+  color: var(--ink);
+  margin-bottom: 22px;
 }
 
 .about-split-text p {
-  font-size: 1rem;
-  color: var(--text-light);
-  line-height: 1.85;
-  font-weight: 300;
-  margin-bottom: 18px;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--body);
+  max-width: 58ch;
+  margin-bottom: 16px;
 }
 
-.about-split-text p:last-child {
-  margin-bottom: 0;
-}
+.about-split-text p:last-child { margin-bottom: 0; }
 
 .about-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-bottom: 26px;
+  background: var(--rule-soft);
+  border: 1px solid var(--rule-soft);
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 .about-card {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px 14px;
-  background: var(--bg-alt);
+  padding: 20px 18px;
+  background: var(--surface);
 }
 
 .about-card-title {
-  font-size: 0.8rem;
+  font-family: var(--read);
+  font-variation-settings: 'opsz' 14;
+  font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--text);
-  margin-bottom: 5px;
+  color: var(--ink);
   line-height: 1.35;
+  margin-bottom: 7px;
 }
 
 .about-card-sub {
-  font-size: 0.74rem;
-  color: var(--text-lighter);
-  line-height: 1.5;
-  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--mid);
 }
 
+/* A statement, not a decorative quote. One hairline above it, no
+   oversized glyph, no coloured slab down the side. */
 .about-pullquote {
-  padding-top: 18px;
-  border-top: 1px solid var(--border);
-  font-size: 0.875rem;
-  color: var(--text-light);
-  line-height: 1.65;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--body);
 }
 
 .about-pullquote strong {
   display: block;
-  color: var(--text);
+  font-family: var(--read);
+  font-variation-settings: 'opsz' 18;
+  font-size: 1.0625rem;
   font-weight: 600;
-  margin-bottom: 4px;
-  font-size: 0.9rem;
+  color: var(--ink);
+  margin-bottom: 6px;
 }
 
-/* Timeline */
+/* ============================================
+   TIMELINE
+   An edge with five nodes. The current entry is marked by a filled
+   node one size up — fill and size, two non-colour channels, so it
+   still reads as current in greyscale.
+   ============================================ */
 .about-timeline-section {
-  padding: 0 48px 96px;
+  padding: 0 56px 88px;
 }
 
 .about-timeline-inner {
-  max-width: 960px;
+  max-width: 1160px;
   margin: 0 auto;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
 }
 
 .about-timeline-track {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .about-timeline-track::before {
   content: '';
   position: absolute;
-  top: 5px;
+  top: 6px;
   left: 6px;
   right: 6px;
   height: 1px;
-  background: var(--border);
+  background: var(--rule-soft);
   z-index: 0;
 }
 
 .about-timeline-item {
   position: relative;
-  padding-top: 26px;
-  padding-right: 20px;
+  padding-top: 30px;
+  padding-right: 24px;
 }
 
 .about-timeline-dot {
   position: absolute;
   top: 0;
   left: 0;
-  width: 11px;
-  height: 11px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: var(--canvas);
+  border: 1.5px solid var(--rule);
   z-index: 1;
 }
 
 .about-timeline-item.current .about-timeline-dot {
-  background: var(--text);
-  border-color: var(--text);
+  width: 17px;
+  height: 17px;
+  top: -2px;
+  left: -2px;
+  background: var(--accent);
+  border-color: var(--ink);
 }
 
 .about-timeline-date {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-lighter);
-  margin-bottom: 8px;
+  font-family: var(--label);
+  font-size: 0.6875rem;
   font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--meta);
+  margin-bottom: 9px;
 }
 
 .about-timeline-title {
-  font-size: 0.875rem;
+  font-family: var(--read);
+  font-variation-settings: 'opsz' 14;
+  font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--text);
-  margin-bottom: 6px;
-  line-height: 1.3;
+  color: var(--ink);
+  line-height: 1.32;
+  margin-bottom: 7px;
 }
 
 .about-timeline-desc {
-  font-size: 0.78rem;
-  color: var(--text-light);
-  line-height: 1.55;
-  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--mid);
 }
 
 /* ============================================
-   PROJECT PAGES
+   SKILLS
    ============================================ */
-.project-hero-meta {
-  display: flex;
-  gap: 48px;
-  justify-content: center;
-  margin-top: 32px;
-  flex-wrap: wrap;
+.about-skills {
+  padding: 96px 56px;
+  background: var(--surface);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
 
-.project-meta-item {
-  text-align: center;
-}
-
-.project-meta-label {
-  display: block;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-lighter);
-  margin-bottom: 4px;
-}
-
-.project-meta-value {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text);
-}
-
-.project-cover {
-  padding: 0 48px;
-  margin-bottom: 80px;
-}
-
-.project-cover-image {
-  max-width: 1100px;
+.about-skills-inner {
+  max-width: 1160px;
   margin: 0 auto;
-  aspect-ratio: 16 / 9;
-  border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--serif);
-  font-size: 3rem;
-  color: rgba(255,255,255,0.3);
 }
 
-.project-body {
-  max-width: 720px;
+.about-skills .section-header { margin-bottom: 48px; }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 44px;
+}
+
+.skill-group h3 {
+  font-family: var(--read);
+  font-variation-settings: 'opsz' 18;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.skill-group ul { list-style: none; }
+
+.skill-group li {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--body);
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.skill-group li:last-child { border-bottom: none; }
+
+/* ============================================
+   ABOUT CLOSING
+   ============================================ */
+.about-cta {
+  padding: 96px 56px 104px;
+}
+
+.about-cta-inner {
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 0 48px 120px;
 }
 
-.project-body h2 {
-  font-family: var(--serif);
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin: 56px 0 16px;
-}
-
-.project-body h2:first-child {
-  margin-top: 0;
-}
-
-.project-body p {
-  font-size: 1rem;
-  color: var(--text-light);
-  line-height: 1.85;
-  font-weight: 300;
+.about-cta-inner .section-title {
+  max-width: 22ch;
   margin-bottom: 16px;
 }
 
-.project-list-items {
-  list-style: none;
-  margin: 0 0 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.project-list-items li {
-  font-size: 1rem;
-  color: var(--text-light);
-  font-weight: 300;
+.about-cta-inner p {
+  font-size: 1.1875rem;
   line-height: 1.7;
-  padding-left: 20px;
-  position: relative;
-}
-
-.project-list-items li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--text-lighter);
-  font-size: 0.85rem;
-}
-
-/* Data table */
-.data-table-wrap {
-  margin: 8px 0 20px;
-  overflow-x: auto;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-  font-weight: 300;
-  color: var(--text-light);
-}
-
-.data-table th,
-.data-table td {
-  text-align: left;
-  padding: 10px 14px 10px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.data-table td {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.data-table thead th {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--text-lighter);
-}
-
-.data-table thead th + th {
-  text-align: right;
-}
-
-.data-table tbody th {
-  font-weight: 400;
-  color: var(--text);
-}
-
-.data-table tfoot th,
-.data-table tfoot td {
-  font-weight: 500;
-  color: var(--text);
-  border-bottom: none;
-}
-
-.data-table-note {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-lighter);
-  margin-left: 8px;
-}
-
-.project-links {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 48px;
-}
-
-/* Image grids */
-.image-grid-2,
-.image-grid-3 {
-  display: grid;
-  gap: 16px;
-  margin: 8px 0 32px;
-}
-
-.image-grid-2 { grid-template-columns: repeat(2, 1fr); }
-.image-grid-3 { grid-template-columns: repeat(3, 1fr); }
-
-.project-figure {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.project-figure img {
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  display: block;
-  background: var(--bg-alt);
-  cursor: zoom-in;
-  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
-}
-
-.project-figure img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-}
-
-/* Inline pipeline diagram */
-.diagram-svg {
-  width: 100%;
-  max-width: 340px;
-  height: auto;
-  display: block;
-  margin: 8px auto 0;
-}
-
-.diagram-svg text {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 400;
-}
-
-.diagram-svg .d-label { fill: var(--text); }
-
-.diagram-svg .d-sub {
-  fill: var(--text-light);
-  font-size: 12px;
-}
-
-.diagram-svg .d-box {
-  fill: var(--bg-alt);
-  stroke: var(--border);
-  stroke-width: 1;
-}
-
-.diagram-svg .d-branch {
-  fill: none;
-  stroke: var(--border);
-  stroke-width: 1;
-  stroke-dasharray: 4 3;
-}
-
-.diagram-svg .d-line {
-  stroke: var(--text-light);
-  stroke-width: 1.5;
-  fill: none;
-}
-
-.diagram-svg .d-dash {
-  stroke: var(--text-light);
-  stroke-width: 1.25;
-  fill: none;
-  stroke-dasharray: 4 3;
-}
-
-.diagram-svg .d-head { fill: var(--text-light); }
-
-/* ============================================
-   IMAGE LIGHTBOX MODAL
-   ============================================ */
-.img-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s var(--ease-out);
-}
-
-.img-modal.open {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.img-modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.img-modal-content {
-  position: relative;
-  z-index: 1;
-  max-width: min(90vw, 1100px);
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  transform: scale(0.92) translateY(16px);
-  transition: transform 0.45s var(--ease-out);
-}
-
-.img-modal.open .img-modal-content {
-  transform: scale(1) translateY(0);
-}
-
-.img-modal-content img {
-  max-width: 100%;
-  max-height: calc(90vh - 56px);
-  border-radius: 12px;
-  display: block;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
-  object-fit: contain;
-  cursor: default;
-}
-
-.img-modal-caption {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.55);
-  font-style: italic;
-  text-align: center;
-}
-
-.img-modal-close {
-  position: fixed;
-  top: 20px;
-  right: 24px;
-  z-index: 2;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 1.1rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.25s, transform 0.25s;
-}
-
-.img-modal-close:hover {
-  background: rgba(255,255,255,0.2);
-  transform: scale(1.1);
-}
-
-.project-figure figcaption {
-  font-size: 0.75rem;
-  color: var(--text-lighter);
-  text-align: center;
-  font-style: italic;
-}
-
-@media (max-width: 600px) {
-  .image-grid-2,
-  .image-grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-
-.project-body .image-placeholder {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin: 32px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  color: var(--text-lighter);
-}
-
-/* Project Nav */
-.project-nav {
-  border-top: 1px solid var(--border);
-  padding: 48px;
-}
-
-.project-nav-inner {
-  max-width: 720px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.project-nav a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  color: var(--text-light);
-  transition: color 0.2s, gap 0.3s var(--ease-out);
-}
-
-.project-nav a:hover {
-  color: var(--text);
-  gap: 12px;
-}
-
-.project-nav .next-label,
-.project-nav .prev-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-lighter);
-  display: block;
-  margin-bottom: 4px;
-}
-
-.project-nav .nav-next {
-  text-align: right;
-}
-
-/* Active nav link */
-.nav-links a.active {
-  color: var(--text);
-}
-
-.nav-links a.active::after {
-  width: 100%;
+  color: var(--mid);
+  max-width: 46ch;
 }
 
 /* ============================================
-   RESPONSIVE — PAGES
+   RESPONSIVE
    ============================================ */
-@media (max-width: 768px) {
-  .page-hero {
-    padding: 120px 24px 48px;
-  }
+@media (max-width: 1000px) {
+  .page-hero { padding: 120px 32px 40px; }
+  .page-hero-title { font-size: clamp(2.1rem, 7vw, 2.9rem); max-width: none; }
+  .page-hero-subtitle { font-size: 1.1875rem; max-width: none; }
+  .page-hero .hero-eyebrow { margin-top: 32px; }
 
-  .about-content {
-    padding: 24px 24px 80px;
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .about-photo-frame {
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  .about-intro {
-    padding: 0 24px 64px;
-  }
-
-  .about-intro-inner {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .about-intro-photo {
-    width: 160px;
-    height: 200px;
-  }
-
-  .about-dynamic {
-    padding: 0 24px 64px;
-  }
-
-  .about-split {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .about-cards {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .about-timeline-section {
-    padding: 0 24px 64px;
-  }
-
-  .about-timeline-track {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .about-timeline-track::before {
-    display: none;
-  }
-
-  .about-skills {
-    padding: 80px 24px;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-  }
-
-  .about-cta {
-    padding: 80px 24px;
-  }
-
-  .project-cover {
-    padding: 0 24px;
-  }
+  .project-cover { padding: 36px 32px 0; margin-bottom: 44px; }
 
   .project-body {
-    padding: 0 24px 80px;
+    max-width: none;
+    margin: 0 32px 72px;
+    padding: 40px 28px 48px 74px;
+    font-size: 1.0625rem;
   }
+  .project-body::before { left: 34px; }
+  .project-body h2::before { left: -44px; }
+  .project-body h2 { font-size: 1.375rem; margin-top: 46px; }
 
-  .project-nav {
-    padding: 32px 24px;
-  }
+  .project-nav { padding: 36px 32px; }
+  .project-nav-inner { max-width: none; }
 
-  .project-hero-meta {
-    gap: 24px;
-  }
+  .about-intro { padding: 8px 32px 64px; }
+  .about-intro-inner { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .about-intro-photo { width: 210px; height: 263px; }
+
+  .about-dynamic { padding: 0 32px 64px; }
+  .about-split { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-top: 32px; }
+
+  .about-timeline-section { padding: 0 32px 64px; }
+  .about-timeline-inner { padding-top: 32px; }
+  .about-timeline-track { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .about-timeline-track::before { display: none; }
+  .about-timeline-item { padding-top: 0; padding-left: 32px; padding-right: 0; }
+  .about-timeline-dot { top: 4px; }
+  .about-timeline-item.current .about-timeline-dot { top: 2px; left: -2px; }
+
+  .about-skills { padding: 72px 32px; }
+  .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
+
+  .about-cta { padding: 72px 32px 80px; }
 }
 
-@media (max-width: 480px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 620px) {
+  .page-hero { padding: 104px 22px 32px; }
+  .page-hero-subtitle { font-size: 1.125rem; }
+
+  .project-cover { padding: 28px 22px 0; margin-bottom: 34px; }
+  .project-cover-image { aspect-ratio: 4 / 3; }
+
+  /* The sheet gives up its side padding and its right-hand margin
+     before it gives up the spine, because the spine is what tells a
+     reader on a phone how far into the argument they are. */
+  .project-body {
+    margin: 0 0 56px;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    padding: 32px 22px 40px 52px;
+  }
+  .project-body::before { left: 22px; }
+  .project-body h2::before { left: -34px; }
+  .project-body h2 { font-size: 1.3rem; }
+
+  .image-grid-2,
+  .image-grid-3 { grid-template-columns: minmax(0, 1fr); }
+
+  .data-table th,
+  .data-table td { padding-right: 10px; }
+
+  .project-links { flex-direction: column; align-items: stretch; }
+
+  .project-nav { padding: 30px 22px; }
+  .project-nav-inner { flex-direction: column; gap: 26px; }
+  .project-nav .nav-next { text-align: left; flex-direction: row-reverse; }
+
+  .about-intro { padding: 4px 22px 56px; }
+  .about-dynamic { padding: 0 22px 56px; }
+  .about-timeline-section { padding: 0 22px 56px; }
+  .about-cards { grid-template-columns: minmax(0, 1fr); }
+  .about-skills { padding: 64px 22px; }
+  .skills-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .about-cta { padding: 64px 22px 72px; }
+  .about-cta-inner p { font-size: 1.0625rem; }
+}
+
+/* ============================================
+   REDUCED MOTION — page surfaces
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .img-modal-content {
+    transform: none;
+    transition: opacity var(--t-base) linear;
+  }
+  .img-modal.open .img-modal-content { transform: none; }
+  .img-modal-close:active { transform: none; }
+  .project-nav a svg,
+  .project-nav .nav-next:hover svg,
+  .project-nav a:not(.nav-next):hover svg {
+    transform: none;
+    transition: none;
   }
 }
