@@ -87,7 +87,7 @@
            standing in for shared songs. This is the product. -->
       <a href="project4.html" class="project-item reveal">
         <div class="project-image">
-          <svg class="project-thumb" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+          <svg class="project-thumb th-network" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
             <g class="t-edge">
               <path d="M200 150 84 74" stroke-width="3.5"/>
               <path d="M200 150 322 68" stroke-width="2"/>
@@ -135,7 +135,7 @@
            MusicSurf was about following a route by feel. -->
       <a href="project1.html" class="project-item reveal">
         <div class="project-image">
-          <svg class="project-thumb" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+          <svg class="project-thumb th-route" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
             <g class="t-edge">
               <path d="M58 226 128 148" stroke-width="2"/>
               <path d="M128 148 208 194" stroke-width="3"/>
@@ -145,16 +145,26 @@
               <path d="M286 104 316 44" stroke-width="1.25"/>
               <path d="M208 194 232 266" stroke-width="1.25"/>
             </g>
-            <circle class="t-node" cx="58" cy="226" r="9"/>
             <circle class="t-node" cx="128" cy="148" r="12"/>
-            <circle class="t-node" cx="286" cy="104" r="11"/>
             <circle class="t-node" cx="352" cy="168" r="9"/>
             <circle class="t-node" cx="106" cy="68" r="7"/>
             <circle class="t-node" cx="316" cy="44" r="7"/>
             <circle class="t-node" cx="232" cy="266" r="7"/>
-            <g class="t-route">
-              <circle class="t-ring" cx="208" cy="194" r="32"/>
-              <circle class="t-node-accent" cx="208" cy="194" r="15"/>
+            <!-- The three named moods. Which one holds the accent is a
+                 hover state, so they are grouped and addressed by index
+                 rather than hard-coded one-at-a-time. The hit circles are
+                 last, and far larger than the nodes they stand for: a
+                 9-unit node is a 7px target on a phone-width thumbnail. -->
+            <g class="t-moods">
+              <circle class="t-ring m-ring" data-mood="1" cx="58" cy="226" r="26"/>
+              <circle class="t-ring m-ring" data-mood="2" cx="208" cy="194" r="32"/>
+              <circle class="t-ring m-ring" data-mood="3" cx="286" cy="104" r="28"/>
+              <circle class="t-node m-node" data-mood="1" cx="58" cy="226" r="9"/>
+              <circle class="t-node m-node" data-mood="2" cx="208" cy="194" r="15"/>
+              <circle class="t-node m-node" data-mood="3" cx="286" cy="104" r="11"/>
+              <circle class="t-hit" data-mood="1" cx="58" cy="226" r="34"/>
+              <circle class="t-hit" data-mood="2" cx="208" cy="194" r="34"/>
+              <circle class="t-hit" data-mood="3" cx="286" cy="104" r="34"/>
             </g>
             <text class="t-label" x="64" y="204">Nostalgic</text>
             <text class="t-label" x="208" y="247">Bittersweet</text>
@@ -181,7 +191,7 @@
            right, items hanging off each one, current stage marked. -->
       <a href="project2.html" class="project-item reveal">
         <div class="project-image">
-          <svg class="project-thumb" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+          <svg class="project-thumb th-pipeline" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
             <g class="t-edge">
               <path d="M76 150 188 150" stroke-width="3"/>
               <path d="M188 150 300 150" stroke-width="3"/>
@@ -201,11 +211,13 @@
             <circle class="t-node" cx="326" cy="212" r="7"/>
             <circle class="t-node" cx="76" cy="150" r="14"/>
             <circle class="t-node" cx="358" cy="150" r="10"/>
-            <g class="t-stage">
-              <circle class="t-ring" cx="188" cy="150" r="29"/>
-              <circle class="t-node-accent" cx="188" cy="150" r="17"/>
-            </g>
-            <circle class="t-node" cx="300" cy="150" r="14"/>
+            <!-- Pack holds the accent at rest; hover hands it to Complete.
+                 Both stages are drawn at all times so the change is a
+                 property swap, not an element appearing. -->
+            <circle class="t-ring s-ring" data-stage="pack" cx="188" cy="150" r="29"/>
+            <circle class="t-ring s-ring" data-stage="done" cx="300" cy="150" r="26"/>
+            <circle class="t-node s-node" data-stage="pack" cx="188" cy="150" r="17"/>
+            <circle class="t-node s-node" data-stage="done" cx="300" cy="150" r="14"/>
             <text class="t-label" x="76" y="254">Prepare</text>
             <text class="t-label" x="188" y="254">Pack</text>
             <text class="t-label" x="300" y="254">Complete</text>
@@ -231,7 +243,7 @@
            crossing the gap, drawn as expanding arcs. -->
       <a href="project3.html" class="project-item reveal">
         <div class="project-image">
-          <svg class="project-thumb" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+          <svg class="project-thumb th-hum" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
             <g class="t-ring t-emit">
               <path d="M138 106a58 58 0 0 1 0 88"/>
               <path d="M152 78a92 92 0 0 1 0 144"/>
@@ -243,8 +255,10 @@
             </g>
             <circle class="t-node" cx="60" cy="150" r="8"/>
             <circle class="t-node" cx="366" cy="150" r="8"/>
-            <circle class="t-node-accent" cx="122" cy="150" r="19"/>
-            <circle class="t-node" cx="312" cy="150" r="19"/>
+            <!-- Both ends are ordinary nodes; which one is lit is a state.
+                 The hum end is accented at rest, the dish end on hover. -->
+            <circle class="t-node h-end" data-end="hum" cx="122" cy="150" r="19"/>
+            <circle class="t-node h-end" data-end="dish" cx="312" cy="150" r="19"/>
             <text class="t-label" x="122" y="216">You hum</text>
             <text class="t-label" x="312" y="216">Salad recipe</text>
             <text class="t-num" x="22" y="278">04</text>

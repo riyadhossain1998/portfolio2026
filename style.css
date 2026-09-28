@@ -725,38 +725,143 @@ img { display: block; max-width: 100%; }
   stroke: var(--surface-sunk);
   stroke-width: 6;
   stroke-linejoin: round;
+  /* The labels sit above the mood hit targets in 02. They are annotation,
+     never a target, so they are taken out of hit testing entirely. */
+  pointer-events: none;
 }
 
-/* Hover advances the state each figure is already drawing rather than
-   decorating it: 01 tightens its selection ring, 02 moves you along the
-   route, 03 moves the order toward the next station, 04 lets the hum
-   travel. Transform only, so releasing the hover reverses along the
-   same path — no second rule, no keyframes to interrupt mid-flight, and
-   the figure is always somewhere valid if the pointer leaves early.
+/* ── Thumbnail hover ──────────────────────────────────────────────
+   Each figure answers hover by advancing the state it is already
+   drawing, and the answer is almost always a handoff of the accent
+   rather than a movement: which node is lit is the only thing these
+   diagrams are actually saying, so changing that says more than
+   sliding it would.
 
-   Durations match .project-item's ground so the row and its figure read
-   as one gesture. Movement is partial on 02 and 03 on purpose: landing
-   on the next node would say "this happened", and a hover preview means
-   "this is where it goes". */
-.project-thumb :is(.t-pulse, .t-route, .t-stage, .t-emit) {
+   Durations match .project-item's ground so the row and its figure
+   read as one gesture. Every rule below is a property swap between two
+   states that both exist at rest, so hover-out reverses along the same
+   path with no second rule and nothing to interrupt mid-flight. */
+
+/* 01 — the ring tightens and turns, and the network it has selected
+   picks up the accent on its outlines. Only the strokes change; the
+   edges keep --rule, so weight still reads as shared-song count and
+   the accent marks membership rather than restating the data. */
+.project-thumb .t-pulse {
+  /* transform-box is needed before a px transform-origin resolves
+     against the viewBox rather than the element's own bounding box. */
+  transform-box: view-box;
+  transform-origin: 200px 150px;
   transition: transform var(--t-slow) var(--ease-out);
 }
 
-/* transform-box is needed before a px transform-origin resolves against
-   the viewBox rather than the element's own bounding box. */
-.project-thumb .t-pulse,
-.project-thumb .t-emit { transform-box: view-box; }
+.th-network .t-node { transition: stroke var(--t-slow) var(--ease-out); }
 
-.project-thumb .t-pulse { transform-origin: 200px 150px; }
-.project-thumb .t-emit  { transform-origin: 122px 150px; }
+/* 02 — the accent follows the pointer between moods. Hovering a mood
+   hands it the fill and the ring and takes both off whichever mood had
+   them, which is the whole claim MusicSurf makes: you move by feel,
+   one mood at a time. Without :has() support the figure simply keeps
+   its resting accent on Bittersweet and nothing breaks. */
+.th-route .m-ring {
+  opacity: 0;
+  transition: opacity var(--t-base) var(--ease-out);
+}
+.th-route .m-ring[data-mood="2"] { opacity: 1; }
+
+.th-route .m-node {
+  transition: fill var(--t-base) var(--ease-out),
+              stroke var(--t-base) var(--ease-out);
+}
+.th-route .m-node[data-mood="2"] { fill: var(--accent); stroke: var(--accent); }
+
+/* fill:none receives no pointer events; transparent does. The radius is
+   deliberately far larger than the node — a 9-unit node is a 7px target
+   at phone width, and the moods are 119 units apart, so 34 never
+   overlaps its neighbours. */
+.th-route .t-hit { fill: transparent; stroke: none; pointer-events: all; }
+
+/* 03 — the order moves from Pack to Complete without anything moving.
+   The stage that is current is the one wearing the accent, so handing
+   it over is the entire statement. */
+.th-pipeline .s-ring {
+  opacity: 0;
+  transition: opacity var(--t-slow) var(--ease-out);
+}
+.th-pipeline .s-ring[data-stage="pack"] { opacity: 1; }
+
+.th-pipeline .s-node {
+  transition: fill var(--t-slow) var(--ease-out),
+              stroke var(--t-slow) var(--ease-out);
+}
+.th-pipeline .s-node[data-stage="pack"] { fill: var(--accent); stroke: var(--accent); }
+
+/* 04 — the hum crosses the gap and is absorbed. The arcs are drawn
+   before the nodes, so they slide behind the --surface-filled listener
+   rather than over it, which is what sells the absorbing. */
+.th-hum .t-emit {
+  transform-box: view-box;
+  transform-origin: 122px 150px;
+  transition: transform var(--t-slow) var(--ease-out),
+              opacity var(--t-base) var(--ease-out);
+}
+
+.th-hum .h-end {
+  transition: fill var(--t-base) var(--ease-out),
+              stroke var(--t-base) var(--ease-out);
+}
+.th-hum .h-end[data-end="hum"] { fill: var(--accent); stroke: var(--accent); }
 
 @media (hover: hover) and (pointer: fine) {
   /* The rotation is what makes the dashes appear to travel; the ring is
      dashed, so turning it reads as the selection working. */
   .project-item:hover .t-pulse { transform: scale(1.18) rotate(22deg); }
-  .project-item:hover .t-route { transform: translate(34px, -39px); }
-  .project-item:hover .t-stage { transform: translateX(46px); }
-  .project-item:hover .t-emit  { transform: scale(1.12); }
+  .project-item:hover .th-network .t-node { stroke: var(--accent); }
+
+  /* :has() contributes the specificity of its argument, so these land
+     at (0,6,0) and outrank the resting [data-mood="2"] rules above
+     regardless of which mood is being pointed at. */
+  .th-route .t-moods:has(.t-hit[data-mood="1"]:hover) .m-ring[data-mood="2"],
+  .th-route .t-moods:has(.t-hit[data-mood="3"]:hover) .m-ring[data-mood="2"] { opacity: 0; }
+  .th-route .t-moods:has(.t-hit[data-mood="1"]:hover) .m-node[data-mood="2"],
+  .th-route .t-moods:has(.t-hit[data-mood="3"]:hover) .m-node[data-mood="2"] {
+    fill: var(--surface);
+    stroke: var(--ink);
+  }
+  .th-route .t-moods:has(.t-hit[data-mood="1"]:hover) .m-ring[data-mood="1"],
+  .th-route .t-moods:has(.t-hit[data-mood="3"]:hover) .m-ring[data-mood="3"] { opacity: 1; }
+  .th-route .t-moods:has(.t-hit[data-mood="1"]:hover) .m-node[data-mood="1"],
+  .th-route .t-moods:has(.t-hit[data-mood="3"]:hover) .m-node[data-mood="3"] {
+    fill: var(--accent);
+    stroke: var(--accent);
+  }
+
+  .project-item:hover .th-pipeline .s-ring[data-stage="pack"] { opacity: 0; }
+  .project-item:hover .th-pipeline .s-ring[data-stage="done"] { opacity: 1; }
+  .project-item:hover .th-pipeline .s-node[data-stage="pack"] {
+    fill: var(--surface);
+    stroke: var(--ink);
+  }
+  .project-item:hover .th-pipeline .s-node[data-stage="done"] {
+    fill: var(--accent);
+    stroke: var(--accent);
+  }
+
+  .project-item:hover .th-hum .t-emit {
+    transform: translateX(56px) scale(1.06);
+    opacity: 0;
+  }
+  /* The delay lives only in the hover rule, so the ends swap after the
+     hum has crossed on the way in and snap back immediately on the way
+     out — the arrival is the thing being timed, not the departure. */
+  .project-item:hover .th-hum .h-end[data-end="hum"] {
+    fill: var(--surface);
+    stroke: var(--ink);
+    transition-delay: 200ms;
+  }
+  .project-item:hover .th-hum .h-end[data-end="dish"] {
+    fill: var(--accent);
+    stroke: var(--accent);
+    transition-delay: 200ms;
+  }
 }
 
 .project-info { padding: 4px 0; }
@@ -1208,12 +1313,22 @@ img { display: block; max-width: 100%; }
   .project-link { transition: text-decoration-color var(--t-base); }
   .project-item:hover .project-link svg,
   .project-link svg { transform: none; transition: none; }
-  /* The thumbnails' hover advance is spatial through and through —
-     there is no non-spatial half to keep, so it goes entirely. */
-  .project-thumb :is(.t-pulse, .t-route, .t-stage, .t-emit),
-  .project-item:hover :is(.t-pulse, .t-route, .t-stage, .t-emit) {
+  /* The thumbnails keep the half of the hover that is colour — which
+     node is lit is the meaning, and a fill change is not motion. Only
+     the two figures that travel give anything up: 01's ring stops
+     turning and 04's hum stops crossing. 04 still fades, because a
+     sound going quiet has to end somehow, and 02 and 03 were never
+     spatial so they need no override at all.
+
+     Selectors are matched to the hover rules they undo — the authored
+     ones carry .th-hum and :hover, so a looser reset would lose. */
+  .project-thumb .t-pulse,
+  .project-item:hover .t-pulse { transform: none; transition: none; }
+
+  .th-hum .t-emit,
+  .project-item:hover .th-hum .t-emit {
     transform: none;
-    transition: none;
+    transition: opacity var(--t-base) linear;
   }
   .nav-menu-toggle span { transition: opacity var(--t-fast); }
 }
