@@ -108,7 +108,7 @@
             <circle class="t-node" cx="278" cy="254" r="8"/>
             <circle class="t-node" cx="44" cy="126" r="9"/>
             <circle class="t-node" cx="356" cy="114" r="12"/>
-            <circle class="t-ring" cx="200" cy="150" r="30"/>
+            <circle class="t-ring t-pulse" cx="200" cy="150" r="30"/>
             <circle class="t-node-accent" cx="200" cy="150" r="21"/>
             <text class="t-label" x="200" y="204">Artist</text>
             <text class="t-label" x="324" y="225">Collaborator</text>
@@ -152,11 +152,13 @@
             <circle class="t-node" cx="106" cy="68" r="7"/>
             <circle class="t-node" cx="316" cy="44" r="7"/>
             <circle class="t-node" cx="232" cy="266" r="7"/>
-            <circle class="t-ring" cx="208" cy="194" r="32"/>
-            <circle class="t-node-accent" cx="208" cy="194" r="15"/>
-            <text class="t-label" x="52" y="204">Start</text>
-            <text class="t-label" x="208" y="247">You are here</text>
-            <text class="t-label" x="290" y="74">Next mood</text>
+            <g class="t-route">
+              <circle class="t-ring" cx="208" cy="194" r="32"/>
+              <circle class="t-node-accent" cx="208" cy="194" r="15"/>
+            </g>
+            <text class="t-label" x="64" y="204">Nostalgic</text>
+            <text class="t-label" x="208" y="247">Bittersweet</text>
+            <text class="t-label" x="290" y="74">Euphoric</text>
             <text class="t-num" x="22" y="278">02</text>
           </svg>
         </div>
@@ -199,8 +201,10 @@
             <circle class="t-node" cx="326" cy="212" r="7"/>
             <circle class="t-node" cx="76" cy="150" r="14"/>
             <circle class="t-node" cx="358" cy="150" r="10"/>
-            <circle class="t-ring" cx="188" cy="150" r="29"/>
-            <circle class="t-node-accent" cx="188" cy="150" r="17"/>
+            <g class="t-stage">
+              <circle class="t-ring" cx="188" cy="150" r="29"/>
+              <circle class="t-node-accent" cx="188" cy="150" r="17"/>
+            </g>
             <circle class="t-node" cx="300" cy="150" r="14"/>
             <text class="t-label" x="76" y="254">Prepare</text>
             <text class="t-label" x="188" y="254">Pack</text>
@@ -228,7 +232,7 @@
       <a href="project3.html" class="project-item reveal">
         <div class="project-image">
           <svg class="project-thumb" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
-            <g class="t-ring">
+            <g class="t-ring t-emit">
               <path d="M138 106a58 58 0 0 1 0 88"/>
               <path d="M152 78a92 92 0 0 1 0 144"/>
               <path d="M166 50a126 126 0 0 1 0 200"/>

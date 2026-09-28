@@ -727,6 +727,38 @@ img { display: block; max-width: 100%; }
   stroke-linejoin: round;
 }
 
+/* Hover advances the state each figure is already drawing rather than
+   decorating it: 01 tightens its selection ring, 02 moves you along the
+   route, 03 moves the order toward the next station, 04 lets the hum
+   travel. Transform only, so releasing the hover reverses along the
+   same path — no second rule, no keyframes to interrupt mid-flight, and
+   the figure is always somewhere valid if the pointer leaves early.
+
+   Durations match .project-item's ground so the row and its figure read
+   as one gesture. Movement is partial on 02 and 03 on purpose: landing
+   on the next node would say "this happened", and a hover preview means
+   "this is where it goes". */
+.project-thumb :is(.t-pulse, .t-route, .t-stage, .t-emit) {
+  transition: transform var(--t-slow) var(--ease-out);
+}
+
+/* transform-box is needed before a px transform-origin resolves against
+   the viewBox rather than the element's own bounding box. */
+.project-thumb .t-pulse,
+.project-thumb .t-emit { transform-box: view-box; }
+
+.project-thumb .t-pulse { transform-origin: 200px 150px; }
+.project-thumb .t-emit  { transform-origin: 122px 150px; }
+
+@media (hover: hover) and (pointer: fine) {
+  /* The rotation is what makes the dashes appear to travel; the ring is
+     dashed, so turning it reads as the selection working. */
+  .project-item:hover .t-pulse { transform: scale(1.18) rotate(22deg); }
+  .project-item:hover .t-route { transform: translate(34px, -39px); }
+  .project-item:hover .t-stage { transform: translateX(46px); }
+  .project-item:hover .t-emit  { transform: scale(1.12); }
+}
+
 .project-info { padding: 4px 0; }
 
 /* The numbering is wayfinding in a four-project set, not decoration:
@@ -1176,5 +1208,12 @@ img { display: block; max-width: 100%; }
   .project-link { transition: text-decoration-color var(--t-base); }
   .project-item:hover .project-link svg,
   .project-link svg { transform: none; transition: none; }
+  /* The thumbnails' hover advance is spatial through and through —
+     there is no non-spatial half to keep, so it goes entirely. */
+  .project-thumb :is(.t-pulse, .t-route, .t-stage, .t-emit),
+  .project-item:hover :is(.t-pulse, .t-route, .t-stage, .t-emit) {
+    transform: none;
+    transition: none;
+  }
   .nav-menu-toggle span { transition: opacity var(--t-fast); }
 }
