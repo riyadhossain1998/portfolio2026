@@ -907,7 +907,10 @@
 .about-timeline-track {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  /* One row of however many entries exist. This was repeat(5, ...), which
+     wrapped the sixth entry onto a second row, below the connecting rule. */
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
 }
 
 .about-timeline-track::before {
@@ -1077,7 +1080,7 @@
 
   .about-timeline-section { padding: 0 32px 64px; }
   .about-timeline-inner { padding-top: 32px; }
-  .about-timeline-track { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .about-timeline-track { grid-auto-flow: row; grid-template-columns: minmax(0, 1fr); gap: 30px; }
   .about-timeline-track::before { display: none; }
   .about-timeline-item { padding-top: 0; padding-left: 32px; padding-right: 0; }
   .about-timeline-dot { top: 4px; }

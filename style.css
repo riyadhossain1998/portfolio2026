@@ -1030,6 +1030,13 @@ img { display: block; max-width: 100%; }
   max-width: 66ch;
 }
 
+/* The paragraph and the button were touching. Scoped to the button so the
+   gap belongs to this one relationship, and set to 28px to match the
+   paragraph-to-button gap on the About page's closing CTA. */
+.about-teaser-content .btn {
+  margin-top: 28px;
+}
+
 /* ============================================
    CONTACT — the closing panel of the homepage.
    A keyed list of real destinations, not a form.
