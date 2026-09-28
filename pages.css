@@ -465,10 +465,15 @@
 .diagram-svg .d-head { fill: var(--mid); }
 
 /* The diagram is a drawing, not a photograph, so it gets the well
-   directly rather than an image frame. */
+   directly rather than an image frame.
+
+   --rule, not --rule-soft: the well's fill is only 1.13:1 against the
+   sheet it sits on, so the border carries the entire boundary. Measured
+   at --rule-soft it was 2.04:1 and the well barely read as a container;
+   --rule is 4.96:1. */
 .project-figure:has(.diagram-svg) {
   background: var(--surface-sunk);
-  border: 1px solid var(--rule-soft);
+  border: 1px solid var(--rule);
   border-radius: 4px;
   padding: 28px 24px 22px;
 }
@@ -1067,7 +1072,12 @@
     transition: opacity var(--t-base) linear;
   }
   .img-modal.open .img-modal-content { transform: none; }
+  /* The press scale goes, and transform leaves the transition list with
+     it, so nothing is left animating a property that no longer moves. */
   .img-modal-close:active { transform: none; }
+  .img-modal-close {
+    transition: background var(--t-base), border-color var(--t-base);
+  }
   .project-nav a svg,
   .project-nav .nav-next:hover svg,
   .project-nav a:not(.nav-next):hover svg {
