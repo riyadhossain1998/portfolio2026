@@ -272,6 +272,11 @@ img { display: block; max-width: 100%; }
   transition: color var(--t-base);
 }
 
+/* Two wordmarks, one shown at a time. display:none rather than a visual
+   clip, so the hidden one leaves the accessibility tree as well and a
+   screen reader never announces the name twice. */
+.logo-short { display: none; }
+
 .nav-logo:hover { color: var(--accent); }
 .nav-logo:hover .ic { color: var(--ink); }
 
@@ -607,7 +612,22 @@ img { display: block; max-width: 100%; }
   margin: 0 -24px;
   border-top: 1px solid var(--rule-soft);
   gap: 56px;
-  transition: background var(--t-base);
+  /* --t-slow, not --t-base. A button's ground is ~150px wide and 200ms
+     reads as instant feedback; this ground is the full row, and at the
+     same duration the eye tracks the fill as a jump rather than a
+     change. Larger area, longer ramp, eased out so the arrival settles
+     instead of stopping. */
+  transition: background var(--t-slow) var(--ease-out);
+}
+
+/* Every project item is also a .reveal, and `.js .reveal` (0,2,0)
+   outranks `.project-item` (0,1,0), so its opacity-only transition was
+   replacing the list above wholesale and the hover fill was landing
+   with no transition at all. Both properties are restated here on a
+   selector that outranks it. This is the rule that actually runs. */
+.js .project-item.reveal {
+  transition: opacity var(--t-slow) var(--ease-out),
+              background var(--t-slow) var(--ease-out);
 }
 
 .project-item:first-child { border-top: 1px solid var(--rule); }
@@ -637,7 +657,9 @@ img { display: block; max-width: 100%; }
   border: 1px solid var(--rule);
   border-radius: 4px;
   background: var(--surface-sunk);
-  transition: border-color var(--t-base), border-width var(--t-base);
+  /* Matched to .project-item so the frame and its ground arrive together. */
+  transition: border-color var(--t-slow) var(--ease-out),
+              border-width var(--t-slow) var(--ease-out);
 }
 
 .project-image img { width: 100%; height: 100%; object-fit: cover; }
@@ -1021,6 +1043,12 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 620px) {
+  /* The full name and the menu toggle do not both fit a 320px bar
+     without shrinking the wordmark below its one usable size, so below
+     620px the name contracts to its initials instead. */
+  .logo-full  { display: none; }
+  .logo-short { display: inline; }
+
   .hero { padding: 110px 22px 80px; min-height: auto; }
   .hero-scroll-hint { display: none; }
   .hero-title { font-size: 2.35rem; max-width: none; }
@@ -1101,6 +1129,14 @@ img { display: block; max-width: 100%; }
     opacity: 1;
     transition: none;
     transition-delay: 0s;
+  }
+
+  /* The entrance is off with everything else above, but the hover fill
+     is colour, not movement, so it keeps its ramp. Restated because
+     .js .project-item.reveal outranks the reveal reset regardless of
+     order. */
+  .js .project-item.reveal {
+    transition: background var(--t-slow) var(--ease-out);
   }
 
   .mobile-menu { transition: opacity var(--t-base) linear; }
