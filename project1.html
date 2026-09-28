@@ -4,35 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MusicSurf | Riyad Hossain</title>
+  <meta name="theme-color" content="#A7C8EA">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400..500&family=Gochi+Hand&family=Piazzolla:ital,opsz,wght@0,8..30,400..600;1,8..30,400..600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pages.css">
+  <script>document.documentElement.className = 'js';</script>
 </head>
 <body>
 
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
-  <div class="grain" aria-hidden="true"></div>
+  <!-- =============================================
+       MARKER SPRITE
+       Two nodes and an edge: the thesis of the work at 1em. Used for
+       the wordmark, the current page indicator and section markers.
+       ============================================= -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="m-node" viewBox="0 0 16 16">
+      <path d="M5.3 6.2 10.7 9.8"/>
+      <circle cx="3.7" cy="4.9" r="2.5"/>
+      <circle cx="12.3" cy="11.1" r="2.5"/>
+    </symbol>
+  </svg>
 
-  <nav class="nav scrolled">
-    <a href="/" class="nav-logo">RH</a>
+  <nav class="nav scrolled" id="nav">
+    <a href="/" class="nav-logo"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>RH</a>
     <div class="nav-links">
-      <a href="/#work" class="active">Work</a>
+      <a href="/#work" class="active"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>Work</a>
       <a href="about.html">About</a>
       <a href="/#contact">Contact</a>
     </div>
+    <button class="nav-menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-links">
+      <a href="/#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+  </div>
 
   <!-- =============================================
        PAGE HEADER
        ============================================= -->
   <header class="page-hero">
     <div class="page-hero-inner">
-      <p class="hero-eyebrow reveal">Case Study 02</p>
-      <h1 class="page-hero-title reveal reveal-delay-1">MusicSurf</h1>
-      <p class="page-hero-subtitle reveal reveal-delay-2">A full UX research process for a concept app that organized music by mood and emotion instead of playlists, from user interviews through to a high fidelity prototype in Adobe XD.</p>
+      <h1 class="page-hero-title reveal">MusicSurf</h1>
+      <p class="page-hero-subtitle reveal reveal-delay-1">A full UX research process for a concept app that organized music by mood and emotion instead of playlists, from user interviews through to a high fidelity prototype in Adobe XD.</p>
+      <!-- The case study number opens the spec block rather than sitting
+           above the title, where it was a kicker. -->
+      <p class="hero-eyebrow reveal reveal-delay-2"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>Case Study 02</p>
       <div class="project-hero-meta reveal reveal-delay-3">
         <div class="project-meta-item">
           <span class="project-meta-label">Role</span>
@@ -60,8 +85,8 @@
 
   <!-- Cover image -->
   <div class="project-cover reveal">
-    <div class="project-cover-image" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); padding: 0; overflow: hidden;">
-      <img src="images/musicsurf/Logo.jpg" alt="MusicSurf logo on a dark blue gradient background" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
+    <div class="project-cover-image" style="padding: 0; overflow: hidden;">
+      <img src="images/musicsurf/Logo.jpg" alt="MusicSurf logo on a dark blue gradient background" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
   </div>
 
@@ -183,7 +208,7 @@
     <div class="footer-inner">
       <span class="footer-logo">Riyad Hossain</span>
       <nav class="footer-links">
-        <a href="mailto:riyad.hossain114@gmail.com">Email</a>
+        <a href="mailto:riyadhossain112357@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/riyad-hossain-30773914b" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com/riyadhossain1998" target="_blank" rel="noopener">GitHub</a>
       </nav>
