@@ -705,6 +705,28 @@ img { display: block; max-width: 100%; }
   letter-spacing: 0.06em;
 }
 
+/* Node labels. The figures were legible as drawings and unreadable as
+   statements — the shared node/edge/ring vocabulary means nothing until
+   the nodes are named. Set in --label because they are annotation on a
+   diagram, the same job the figure captions do.
+
+   paint-order draws the stroke first, so each word knocks a rounded
+   well out of the edges it crosses instead of tangling with them. The
+   stroke is --surface-sunk because that is the thumbnail's own ground,
+   and hover changes only the frame, never the fill. */
+.project-thumb .t-label {
+  font-family: var(--label);
+  font-size: 14px;
+  font-weight: 500;
+  fill: var(--meta);
+  letter-spacing: 0.02em;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--surface-sunk);
+  stroke-width: 6;
+  stroke-linejoin: round;
+}
+
 .project-info { padding: 4px 0; }
 
 /* The numbering is wayfinding in a four-project set, not decoration:
@@ -1055,6 +1077,11 @@ img { display: block; max-width: 100%; }
   .hero-sub { font-size: 1.0625rem; }
   .hero-cta { flex-direction: column; align-items: stretch; }
   .btn { width: 100%; justify-content: center; }
+
+  /* The thumbnail is a fixed 400-unit viewBox scaled to its container,
+     so a phone renders 14px as 11.5px. The labels are the whole point
+     of the figure; they get a size that survives the scale-down. */
+  .project-thumb .t-label { font-size: 16px; }
 
   .work { padding: 72px 22px; }
 
