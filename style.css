@@ -794,9 +794,10 @@ img { display: block; max-width: 100%; }
 }
 .th-pipeline .s-node[data-stage="pack"] { fill: var(--accent); stroke: var(--accent); }
 
-/* 04 — the hum crosses the gap and is absorbed. The arcs are drawn
-   before the nodes, so they slide behind the --surface-filled listener
-   rather than over it, which is what sells the absorbing. */
+/* 04 — the hum crosses the gap and is absorbed, and what it leaves
+   behind is the ring. The arcs are drawn before the nodes, so they
+   travel behind the listener rather than over it, which is what sells
+   the absorbing; the ring then arrives on the node they went into. */
 .th-hum .t-emit {
   transform-box: view-box;
   transform-origin: 122px 150px;
@@ -809,6 +810,12 @@ img { display: block; max-width: 100%; }
               stroke var(--t-base) var(--ease-out);
 }
 .th-hum .h-end[data-end="hum"] { fill: var(--accent); stroke: var(--accent); }
+
+.th-hum .h-ring {
+  opacity: 0;
+  transition: opacity var(--t-base) var(--ease-out);
+}
+.th-hum .h-ring[data-end="hum"] { opacity: 1; }
 
 @media (hover: hover) and (pointer: fine) {
   /* The rotation is what makes the dashes appear to travel; the ring is
@@ -845,11 +852,18 @@ img { display: block; max-width: 100%; }
     stroke: var(--accent);
   }
 
+  /* The hum converges as it travels: the arcs close on each other and
+     the outermost lands at x≈309, inside the listener, so it funnels
+     into the node rather than sweeping past it. The fade is held back
+     to the last 140ms of the 320ms so it dissolves on arrival instead
+     of on departure. */
   .project-item:hover .th-hum .t-emit {
-    transform: translateX(56px) scale(1.06);
+    transform: translateX(130px) scale(0.5);
     opacity: 0;
+    transition: transform var(--t-slow) var(--ease-out),
+                opacity var(--t-fast) var(--ease-out) 180ms;
   }
-  /* The delay lives only in the hover rule, so the ends swap after the
+  /* The delays live only in the hover rule, so the ends swap after the
      hum has crossed on the way in and snap back immediately on the way
      out — the arrival is the thing being timed, not the departure. */
   .project-item:hover .th-hum .h-end[data-end="hum"] {
@@ -860,6 +874,14 @@ img { display: block; max-width: 100%; }
   .project-item:hover .th-hum .h-end[data-end="dish"] {
     fill: var(--accent);
     stroke: var(--accent);
+    transition-delay: 200ms;
+  }
+  .project-item:hover .th-hum .h-ring[data-end="hum"] {
+    opacity: 0;
+    transition-delay: 200ms;
+  }
+  .project-item:hover .th-hum .h-ring[data-end="dish"] {
+    opacity: 1;
     transition-delay: 200ms;
   }
 }

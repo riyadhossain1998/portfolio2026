@@ -244,10 +244,12 @@
       <a href="project3.html" class="project-item reveal">
         <div class="project-image">
           <svg class="project-thumb th-hum" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+            <!-- The arcs start clear of the hum node's ring — both are the
+                 same dashed accent stroke, and crossing them muddies both. -->
             <g class="t-ring t-emit">
-              <path d="M138 106a58 58 0 0 1 0 88"/>
-              <path d="M152 78a92 92 0 0 1 0 144"/>
-              <path d="M166 50a126 126 0 0 1 0 200"/>
+              <path d="M158 106a58 58 0 0 1 0 88"/>
+              <path d="M172 78a92 92 0 0 1 0 144"/>
+              <path d="M186 50a126 126 0 0 1 0 200"/>
             </g>
             <g class="t-edge">
               <path d="M104 150 60 150" stroke-width="1.5"/>
@@ -256,7 +258,11 @@
             <circle class="t-node" cx="60" cy="150" r="8"/>
             <circle class="t-node" cx="366" cy="150" r="8"/>
             <!-- Both ends are ordinary nodes; which one is lit is a state.
-                 The hum end is accented at rest, the dish end on hover. -->
+                 The hum end is accented at rest, the dish end on hover.
+                 The ring travels with the accent, the same way it marks the
+                 live node in 01, 02 and 03. -->
+            <circle class="t-ring h-ring" data-end="hum" cx="122" cy="150" r="31"/>
+            <circle class="t-ring h-ring" data-end="dish" cx="312" cy="150" r="31"/>
             <circle class="t-node h-end" data-end="hum" cx="122" cy="150" r="19"/>
             <circle class="t-node h-end" data-end="dish" cx="312" cy="150" r="19"/>
             <text class="t-label" x="122" y="216">You hum</text>
