@@ -496,6 +496,75 @@
   border-top: 1px solid var(--rule);
 }
 
+/* The same row, repeated in the hero so the live work is reachable
+   without reading 2,000 words first. The rule above it is --rule-soft,
+   not --rule: the bottom row closes the case study and earns a
+   structural edge, while this one only separates itself from the spec
+   block directly above. Same buttons, lighter seam. */
+.project-links-top {
+  margin-top: 34px;
+  padding-top: 30px;
+  border-top: 1px solid var(--rule-soft);
+}
+
+/* ============================================
+   BACK TO TOP
+   A case study runs several thousand words and the fixed nav has no
+   "top" target of its own, so returning is otherwise a long scroll.
+   Built by main.js only on pages that have a .project-body.
+
+   Its fill is barely 1.13:1 against the canvas it floats over, so the
+   1.5px --rule border carries the whole boundary — the same reasoning
+   as the diagram well. visibility is transitioned alongside opacity so
+   the control leaves the tab order while hidden rather than sitting
+   invisible in the focus ring.
+   ============================================ */
+.to-top {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 800;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  border: 1.5px solid var(--rule);
+  background: var(--surface);
+  color: var(--body);              /* 10.49 on --surface */
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity var(--t-slow) var(--ease-out),
+              transform var(--t-slow) var(--ease-out),
+              visibility 0s linear var(--t-slow),
+              border-color var(--t-base),
+              color var(--t-base);
+}
+
+.to-top .ic { width: 16px; height: 16px; }
+
+.to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity var(--t-slow) var(--ease-out),
+              transform var(--t-slow) var(--ease-out),
+              visibility 0s,
+              border-color var(--t-base),
+              color var(--t-base);
+}
+
+/* Hover is stroke and weight, not fill — the same answer the rest of
+   the system gives. */
+@media (hover: hover) and (pointer: fine) {
+  .to-top:hover { border-color: var(--ink); color: var(--ink); }
+}
+
+.to-top:active { transform: scale(0.94); }
+
 /* ============================================
    IMAGE LIGHTBOX
    The one dark surface on the site. It is dark because the content
@@ -1048,6 +1117,7 @@
   .data-table td { padding-right: 10px; }
 
   .project-links { flex-direction: column; align-items: stretch; }
+  .to-top { right: 18px; bottom: 18px; }
 
   .project-nav { padding: 30px 22px; }
   .project-nav-inner { flex-direction: column; gap: 26px; }
@@ -1083,5 +1153,25 @@
   .project-nav a:not(.nav-next):hover svg {
     transform: none;
     transition: none;
+  }
+  /* The rise and the press scale both go; opacity and visibility stay,
+     so the control still announces its arrival and still leaves the tab
+     order when it goes. */
+  .to-top,
+  .to-top.visible,
+  .to-top:active {
+    transform: none;
+  }
+  .to-top {
+    transition: opacity var(--t-slow) linear,
+                visibility 0s linear var(--t-slow),
+                border-color var(--t-base),
+                color var(--t-base);
+  }
+  .to-top.visible {
+    transition: opacity var(--t-slow) linear,
+                visibility 0s,
+                border-color var(--t-base),
+                color var(--t-base);
   }
 }

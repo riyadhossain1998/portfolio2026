@@ -131,10 +131,46 @@ function initImageModal() {
 }
 
 // ============================================
+// BACK TO TOP
+// Only case studies get one: they are the only pages long enough for
+// the return trip to cost anything.
+// ============================================
+function initBackToTop() {
+  if (!document.querySelector('.project-body')) return;
+
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 13V3.6M3.9 7.7 8 3.6l4.1 4.1"/></svg>';
+  document.body.appendChild(btn);
+
+  // A screen and a half in: far enough that the top is a real journey
+  // back, early enough that it is already there when it is wanted.
+  const update = () => {
+    btn.classList.toggle('visible', window.scrollY > window.innerHeight * 1.5);
+  };
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+
+  btn.addEventListener('click', () => {
+    // html { scroll-behavior } already decides how this moves, and it
+    // carries its own reduced-motion override, so the behaviour is not
+    // restated here.
+    window.scrollTo({ top: 0 });
+    // Keyboard focus follows the viewport, otherwise the next Tab
+    // resumes from a control that is now offscreen.
+    document.querySelector('.nav-logo')?.focus();
+  });
+}
+
+// ============================================
 // INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initReveal();
   initImageModal();
+  initBackToTop();
 });
