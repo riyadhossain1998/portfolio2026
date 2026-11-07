@@ -1,0 +1,146 @@
+# Pages CMS editor (https://app.pagescms.org). Sign in with GitHub, pick
+# this repo, and these forms appear. Saving commits to the repo, and the
+# GitHub Action rebuilds the site.
+media:
+  input: images
+  output: images
+
+content:
+  - name: projects
+    label: Case studies
+    type: collection
+    path: content/projects
+    filename: "{primary}.md"
+    exclude: [projects.11tydata.js]
+    view:
+      fields: [title, order, year]
+      primary: title
+      sort: [order, title]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: Shown as the big heading on the case study page.
+      - name: listTitle
+        label: Home page title
+        type: string
+        description: Optional longer name for the card on the home page. Falls back to Title.
+      - name: order
+        label: Order
+        type: number
+        description: Position in the work list (1 is first). Also sets the Case Study number.
+      - name: year
+        label: Year
+        type: number
+      - name: category
+        label: Category
+        type: string
+        description: Small label on the home card, e.g. "Product Design / Full Stack".
+      - name: summary
+        label: Home card summary
+        type: text
+      - name: subtitle
+        label: Page intro
+        type: text
+        description: The paragraph under the title on the case study page.
+      - name: labels
+        label: Tags
+        type: string
+        list: true
+      - name: cover
+        label: Cover image
+        type: object
+        fields:
+          - name: src
+            label: Image
+            type: image
+          - name: alt
+            label: Image description (alt text)
+            type: text
+      - name: thumb
+        label: Home card drawing
+        type: string
+        description: Name of a drawn SVG in _includes/thumbs (leave empty to use the cover image).
+      - name: regions
+        label: Regions (for the graph)
+        type: object
+        description: How strongly this sits in each area, from 0 to 1. Leave empty if it doesn't apply.
+        fields:
+          - { name: uiux, label: UI/UX, type: number }
+          - { name: programming, label: Programming, type: number }
+          - { name: illustration, label: Illustration, type: number }
+          - { name: gaming, label: Gaming, type: number }
+      - name: related
+        label: Related items
+        type: string
+        list: true
+        description: File names (without .md) of related case studies or artworks.
+      - name: meta
+        label: Project details
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: value, label: Value, type: string }
+      - name: links
+        label: Buttons
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: url, label: Link, type: string }
+          - name: style
+            label: Style
+            type: select
+            options:
+              values: [primary, ghost]
+      # Kept so saving from the editor doesn't drop them.
+      - { name: permalink, type: string, hidden: true }
+      - { name: pageTitle, type: string, hidden: true }
+      - name: body
+        label: Case study
+        type: code
+        options:
+          format: markdown
+
+  - name: artworks
+    label: Artworks
+    type: collection
+    path: content/artworks
+    filename: "{primary}.md"
+    exclude: [artworks.11tydata.js, .gitkeep]
+    view:
+      fields: [title, year]
+      primary: title
+      sort: [year]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: image
+        label: Image
+        type: image
+      - name: year
+        label: Year
+        type: number
+      - name: summary
+        label: One line description
+        type: string
+      - name: link
+        label: Link
+        type: string
+        description: Optional, e.g. an ArtStation or Instagram post.
+      - name: regions
+        label: Regions (for the graph)
+        type: object
+        fields:
+          - { name: illustration, label: Illustration, type: number }
+          - { name: gaming, label: Gaming, type: number }
+          - { name: uiux, label: UI/UX, type: number }
+          - { name: programming, label: Programming, type: number }
+      - name: related
+        label: Related items
+        type: string
+        list: true

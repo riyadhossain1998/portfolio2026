@@ -1,0 +1,93 @@
+---
+layout: layouts/base.njk
+nav: work
+---
+{#- Case study page. Everything here comes from the front matter of a
+    file in content/projects/, and the body is that file's Markdown. -#}
+{%- set mark %}<svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><use href="#m-node"/></svg>{% endset -%}
+{%- set studies = collections.caseStudies -%}
+{%- set position = 0 -%}
+{%- for p in studies %}{% if p.url == page.url %}{% set position = loop.index %}{% endif %}{% endfor -%}
+{%- macro linkButtons(extraClass) -%}
+{%- if links and links.length %}
+      <div class="project-links{{ extraClass }}">
+{%- for l in links %}
+        <a href="{{ l.url | e }}"{% if l.url.startsWith('http') %} target="_blank" rel="noopener"{% endif %} class="btn btn-{{ l.style or 'primary' }}">{{ l.label | e }}</a>
+{%- endfor %}
+      </div>
+{%- endif -%}
+{%- endmacro %}
+  <!-- =============================================
+       PAGE HEADER
+       ============================================= -->
+  <header class="page-hero">
+    <div class="page-hero-inner">
+      <h1 class="page-hero-title reveal">{{ title | e }}</h1>
+      <p class="page-hero-subtitle reveal reveal-delay-1">{{ subtitle | e }}</p>
+      <!-- The case study number opens the spec block rather than sitting
+           above the title, where it was a kicker. -->
+      <p class="hero-eyebrow reveal reveal-delay-2">{{ mark | safe }}Case Study {{ position | pad2 }}</p>
+{%- if meta and meta.length %}
+      <div class="project-hero-meta reveal reveal-delay-3">
+{%- for m in meta %}
+        <div class="project-meta-item">
+          <span class="project-meta-label">{{ m.label | e }}</span>
+          <span class="project-meta-value">{{ m.value | e }}</span>
+        </div>
+{%- endfor %}
+      </div>
+{%- endif %}
+{{- linkButtons(" project-links-top reveal reveal-delay-3") }}
+    </div>
+  </header>
+{%- if cover and cover.src %}
+
+  <!-- Cover image -->
+  <div class="project-cover reveal">
+    <div class="project-cover-image" style="padding: 0; overflow: hidden;">
+      <img src="{{ cover.src | localPath | e }}" alt="{{ cover.alt | e }}" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+  </div>
+{%- endif %}
+
+  <!-- =============================================
+       CASE STUDY BODY
+       ============================================= -->
+  <article class="project-body">
+
+{{ content | safe }}
+{{ linkButtons(" reveal") }}
+
+  </article>
+
+  <!-- =============================================
+       PROJECT NAV
+       ============================================= -->
+{%- set prev = studies[position - 2] if position > 1 else null %}
+{%- set next = studies[position] if position < studies.length else null %}
+  <nav class="project-nav">
+    <div class="project-nav-inner">
+{%- if prev %}
+      <a href="{{ prev.url | localPath }}">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div>
+          <span class="prev-label">Previous Project</span>
+          {{ prev.data.title | e }}
+        </div>
+      </a>
+{%- else %}
+      <div></div>
+{%- endif %}
+{%- if next %}
+      <a href="{{ next.url | localPath }}" class="nav-next">
+        <div>
+          <span class="next-label">Next Project</span>
+          {{ next.data.title | e }}
+        </div>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+{%- else %}
+      <div></div>
+{%- endif %}
+    </div>
+  </nav>

@@ -1,0 +1,6 @@
+---
+permalink: /content/projects.json
+eleventyExcludeFromCollections: true
+---
+{#- Every case study and artwork, for the home page graph. -#}
+{{ collections.caseStudies | graphItems(collections.artworks) | json | safe }}

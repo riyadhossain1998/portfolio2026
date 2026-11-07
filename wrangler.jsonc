@@ -1,0 +1,9 @@
+// Cloudflare Workers Builds deploys this repo too. Build with Eleventy
+// first, then serve the generated _site/ folder as static files.
+{
+  "name": "portfolio2026",
+  "compatibility_date": "2026-04-07",
+  "observability": { "enabled": true },
+  "build": { "command": "npm ci && npm run build" },
+  "assets": { "directory": "./_site" }
+}
