@@ -6,8 +6,9 @@ Live at [riyadhossain.com](https://riyadhossain.com)
 
 ## Tech
 
-Static HTML, CSS and vanilla JavaScript. No framework, no build step, no
-dependencies. Piazzolla, Azeret Mono and Gochi Hand are requested from Google
+Static HTML, CSS and vanilla JavaScript, built with [Eleventy](https://www.11ty.dev/).
+Content lives in Markdown files, the page shell in templates, and Eleventy
+writes plain static pages to `_site/`. There is no client-side framework. Piazzolla, Azeret Mono and Gochi Hand are requested from Google
 Fonts; every other asset is served from this repository.
 
 The design system is "Signal": a periwinkle canvas and an ink blue accent, one
@@ -17,20 +18,63 @@ once. Each page sets `document.documentElement.className = 'js'` in the head,
 and that class is what arms the hidden state of the reveal animation, so a
 script failure can never leave the page blank.
 
+## Editing content
+
+Every case study is one Markdown file in `content/projects/`. The settings at
+the top (title, tags, cover, project details, buttons) fill the page header
+and the home page card; the text below is the case study itself. Artworks go
+in `content/artworks/`, one file each.
+
+There are two ways to edit:
+
+- **In the browser with [Pages CMS](https://app.pagescms.org).** Sign in with
+  GitHub and open this repository. "Case studies" and "Artworks" appear as
+  forms, with image upload. Saving commits to `main`, and the site updates
+  about a minute later. The forms are defined in `.pages.yml`.
+- **By hand.** Edit the Markdown files and push to `main`.
+
+Writing the case study body:
+
+- `## Heading` for a section heading, blank lines between paragraphs, `- ` for
+  a bullet list, `**bold**`, `*italic*`, `[text](https://link)`.
+- An image is `![description of the image](images/folder/file.jpg "Caption")`.
+  One image on its own line becomes a full width figure. Two or more images on
+  consecutive lines, with no blank line between them, become a grid (three
+  images make a three column grid, any other number a two column one).
+- Anything Markdown can't express, such as the data table and pipeline diagram
+  in Popified Networks, is written as plain HTML in the same file.
+
+The order of the work list, the Case Study numbers and the previous/next
+links all come from each file's `order` field. A new case study is published
+at `/<file name>.html`. The first four keep their original addresses
+(`project1.html` to `project4.html`) through their `permalink` field.
+
+### Graph data
+
+The build also writes `/content/projects.json`: every case study and artwork
+with `id`, `title`, `type`, `regions` (weights from 0 to 1 for `uiux`,
+`programming`, `illustration` and `gaming`), `related` (made two way
+automatically), `url`, `thumb`, `year` and `summary`. The home page graph reads
+this file.
+
 ## Structure
 
-### Pages
+### Source files
 
-| File | Page |
+| Path | What it is |
 | --- | --- |
-| `index.html` | Home. Hero, the work list linking to the four case studies, an about teaser, and the contact section. |
-| `about.html` | About — "The story so far." Intro, split content sections, skills, a timeline, and a closing call to action. |
-| `project1.html` | MusicSurf case study. |
-| `project2.html` | Omni case study — an order management redesign. |
-| `project3.html` | Humming Salad Bar case study. |
-| `project4.html` | Popified Networks case study. |
+| `content/projects/*.md` | One file per case study. |
+| `content/artworks/*.md` | One file per artwork (no page of its own, graph data only). |
+| `index.njk` | Home page. The work list is generated from the case studies. |
+| `about.njk` | About page. |
+| `_includes/layouts/base.njk` | Shared head, nav and footer. |
+| `_includes/layouts/case-study.njk` | Case study page template. |
+| `_includes/thumbs/*.svg` | The drawn home page thumbnails, chosen by a case study's `thumb` field. |
+| `content/projects-feed.njk` | Writes `/content/projects.json`. |
+| `eleventy.config.js` | Build settings, including the Markdown rules for figures and links. |
+| `.pages.yml` | Pages CMS forms. |
 
-Every page loads `style.css` and `main.js`. All pages except `index.html` also
+Every page loads `style.css` and `main.js`. All pages except the home page also
 load `pages.css`.
 
 ### Styles
@@ -79,32 +123,32 @@ reduced-motion override, rather than through script.
 `images/` is organized one directory per case study, alongside the photography
 used on the home and about pages:
 
-- `images/musicsurf/` — MusicSurf (`project1.html`): sketches, low fidelity and
+- `images/musicsurf/` — MusicSurf (`musicsurf.md`): sketches, low fidelity and
   high fidelity screens.
-- `images/oms/` — Omni (`project2.html`): sketches, wireframes and final
+- `images/oms/` — Omni (`omni.md`): sketches, wireframes and final
   screens.
-- `images/saladtime/` — Humming Salad Bar (`project3.html`): photography and
+- `images/saladtime/` — Humming Salad Bar (`salad-bar.md`): photography and
   screenshots.
-- `images/featurenet/` — Popified Networks (`project4.html`): prototypes,
+- `images/featurenet/` — Popified Networks (`popified.md`): prototypes,
   graphs and mobile screens.
 - `images/intro/` — the portrait used in the home page about teaser and on
-  `about.html`.
+  the about page.
 
-`project4.html` also reuses four images from `images/musicsurf/`, where it
+Popified Networks also reuses four images from `images/musicsurf/`, where it
 refers back to that earlier work.
 
 ## Run locally
 
-There is nothing to install or compile. Serve the directory over HTTP:
-
 ```sh
-python3 -m http.server 8000
+npm install
+npm start
 ```
 
-Then open <http://localhost:8000>.
+Then open <http://localhost:8080>. The page reloads as you edit.
 
 ## Deployment
 
-Hosted on GitHub Pages from the default branch. The `CNAME` file points the
-site at the custom domain `riyadhossain.com`. Pushing to the default branch
-publishes.
+`.github/workflows/deploy.yml` builds the site and publishes it to GitHub
+Pages on every push to `main`. In the repository settings, Pages must use
+"GitHub Actions" as its source. The `CNAME` file points the site at the
+custom domain `riyadhossain.com`.

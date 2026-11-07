@@ -1,0 +1,38 @@
+<!-- Project 02 — a wandering path rather than a hub, because
+     MusicSurf was about following a route by feel. -->
+<svg class="project-thumb th-route" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+  <g class="t-edge">
+    <path d="M58 226 128 148" stroke-width="2"/>
+    <path d="M128 148 208 194" stroke-width="3"/>
+    <path d="M208 194 286 104" stroke-width="2"/>
+    <path d="M286 104 352 168" stroke-width="1.5"/>
+    <path d="M128 148 106 68" stroke-width="1.25"/>
+    <path d="M286 104 316 44" stroke-width="1.25"/>
+    <path d="M208 194 232 266" stroke-width="1.25"/>
+  </g>
+  <circle class="t-node" cx="128" cy="148" r="12"/>
+  <circle class="t-node" cx="352" cy="168" r="9"/>
+  <circle class="t-node" cx="106" cy="68" r="7"/>
+  <circle class="t-node" cx="316" cy="44" r="7"/>
+  <circle class="t-node" cx="232" cy="266" r="7"/>
+  <!-- The three named moods. Which one holds the accent is a
+       hover state, so they are grouped and addressed by index
+       rather than hard-coded one-at-a-time. The hit circles are
+       last, and far larger than the nodes they stand for: a
+       9-unit node is a 7px target on a phone-width thumbnail. -->
+  <g class="t-moods">
+    <circle class="t-ring m-ring" data-mood="1" cx="58" cy="226" r="26"/>
+    <circle class="t-ring m-ring" data-mood="2" cx="208" cy="194" r="32"/>
+    <circle class="t-ring m-ring" data-mood="3" cx="286" cy="104" r="28"/>
+    <circle class="t-node m-node" data-mood="1" cx="58" cy="226" r="9"/>
+    <circle class="t-node m-node" data-mood="2" cx="208" cy="194" r="15"/>
+    <circle class="t-node m-node" data-mood="3" cx="286" cy="104" r="11"/>
+    <circle class="t-hit" data-mood="1" cx="58" cy="226" r="34"/>
+    <circle class="t-hit" data-mood="2" cx="208" cy="194" r="34"/>
+    <circle class="t-hit" data-mood="3" cx="286" cy="104" r="34"/>
+  </g>
+  <text class="t-label" x="64" y="204">Nostalgic</text>
+  <text class="t-label" x="208" y="247">Bittersweet</text>
+  <text class="t-label" x="290" y="74">Euphoric</text>
+  <text class="t-num" x="22" y="278">02</text>
+</svg>

@@ -1,0 +1,30 @@
+<!-- Project 01 — a hub with eight collaborators, edge weight
+     standing in for shared songs. This is the product. -->
+<svg class="project-thumb th-network" viewBox="0 0 400 300" aria-hidden="true" focusable="false">
+  <g class="t-edge">
+    <path d="M200 150 84 74" stroke-width="3.5"/>
+    <path d="M200 150 322 68" stroke-width="2"/>
+    <path d="M200 150 62 192" stroke-width="1.25"/>
+    <path d="M200 150 340 182" stroke-width="4.5"/>
+    <path d="M200 150 152 252" stroke-width="2.5"/>
+    <path d="M200 150 278 254" stroke-width="1.25"/>
+    <path d="M200 150 44 126" stroke-width="1.75"/>
+    <path d="M200 150 356 114" stroke-width="3"/>
+    <path d="M322 68 356 114" stroke-width="1.25"/>
+    <path d="M62 192 152 252" stroke-width="1.25"/>
+  </g>
+  <circle class="t-node" cx="84" cy="74" r="13"/>
+  <circle class="t-node" cx="322" cy="68" r="10"/>
+  <circle class="t-node" cx="62" cy="192" r="8"/>
+  <circle class="t-node" cx="340" cy="182" r="15"/>
+  <circle class="t-node" cx="152" cy="252" r="11"/>
+  <circle class="t-node" cx="278" cy="254" r="8"/>
+  <circle class="t-node" cx="44" cy="126" r="9"/>
+  <circle class="t-node" cx="356" cy="114" r="12"/>
+  <circle class="t-ring t-pulse" cx="200" cy="150" r="30"/>
+  <circle class="t-node-accent" cx="200" cy="150" r="21"/>
+  <text class="t-label" x="200" y="204">Artist</text>
+  <text class="t-label" x="324" y="225">Collaborator</text>
+  <text class="t-label" x="146" y="113">Shared tracks</text>
+  <text class="t-num" x="22" y="278">01</text>
+</svg>
