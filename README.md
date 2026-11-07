@@ -152,3 +152,6 @@ Then open <http://localhost:8080>. The page reloads as you edit.
 Pages on every push to `main`. In the repository settings, Pages must use
 "GitHub Actions" as its source. The `CNAME` file points the site at the
 custom domain `riyadhossain.com`.
+
+Cloudflare Workers Builds is also connected to this repository. `wrangler.jsonc`
+tells it to run the same Eleventy build and serve `_site/`.
